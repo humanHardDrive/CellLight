@@ -5,8 +5,9 @@
 extern "C" {
 #endif
 
+void CommRouter_Setup();
 
-
+void CommRouter_Background();
 
 #ifdef	__cplusplus
 }

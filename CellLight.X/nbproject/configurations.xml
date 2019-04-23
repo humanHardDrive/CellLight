@@ -8,6 +8,7 @@
       <itemPath>Debug.h</itemPath>
       <itemPath>CommRouter.h</itemPath>
       <itemPath>LEDControl.h</itemPath>
+      <itemPath>msgs.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -17,6 +18,9 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>main.c</itemPath>
+      <itemPath>CommRouter.c</itemPath>
+      <itemPath>Debug.c</itemPath>
+      <itemPath>LEDControl.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

@@ -5,8 +5,9 @@
 extern "C" {
 #endif
 
+void Debug_Setup();
 
-
+void Debug_Background();
 
 #ifdef	__cplusplus
 }
