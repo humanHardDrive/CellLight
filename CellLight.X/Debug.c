@@ -19,12 +19,19 @@ unsigned int rxBufferIn = 0, rxBufferOut = 0, rxCount = 0;
 
 void l_UARTSetup()
 {
-    U1BRG = 23; //RECALCULATE
+    //Setup RP ports
+    _RP8R = 21; //UART 4 TX
+    _U4RXR = 9; //UART 4 RX
     
+    //Setup UART4
+    //Generate interrupt when TX buffer is empty
     U4STAbits.UTXISEL0 = 0;
     U4STAbits.UTXISEL1 = 1;
+    U4MODEbits.BRGH = 1;
+    //Enable RX/TX interrupts
     IEC5bits.U4TXIE = 1;
     IEC5bits.U4RXIE = 1;
+    U4BRG = 0x15; //115200 buad at 20MHz FOSC
     
     U4MODEbits.UARTEN = 1; //Enable UART
     U4STAbits.UTXEN = 1; //Enable TX
@@ -41,8 +48,10 @@ void Debug_Background()
 
 void __attribute__((__interrupt__, auto_psv)) _U4TXInterrupt(void)
 {
+    _U4TXIF = 0;
 }
 
 void __attribute__((__interrupt__, auto_psv)) _U4RXInterrupt(void)
 {
+    _U4RXIF = 0;
 }
