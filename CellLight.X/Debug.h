@@ -13,7 +13,7 @@ void Debug_Setup();
 void Debug_Background();
 
 void Debug_PutChar(char c);
-void Debug_PutStr(char* str, unsigned char length);
+void Debug_PutStr(char* str);
 
 unsigned int Debug_CharAvailable();
 char Debug_GetChar();
