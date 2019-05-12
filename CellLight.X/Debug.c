@@ -39,15 +39,38 @@ void l_UARTSetup()
     U4STAbits.UTXEN = 1; //Enable TX
 }
 
+void l_ClearScreen()
+{
+    char escSeq[] = {0x1B, '[', '2', 'J', '\0'};
+    Debug_PutStr(escSeq);
+}
+
+void l_CursorHome()
+{
+    char escSeq[] = {0x1B, '[', 'H', '\0'};
+    Debug_PutStr(escSeq);
+}
+
 void Debug_Setup()
 {
     l_UARTSetup();
+    
+    l_ClearScreen();
+    l_CursorHome();    
 }
 
 void Debug_Background()
 {
     if(Debug_CharAvailable())
     {
+        char c = Debug_GetChar();
+        if(c == 0x1B)
+        {
+            l_ClearScreen();
+            l_CursorHome();
+        }
+        else if(c == 0x0D)
+            Debug_PutStr("HELLO WORLD\r\n");
     }
 }
 
