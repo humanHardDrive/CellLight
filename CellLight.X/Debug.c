@@ -17,6 +17,43 @@ volatile unsigned char rxBufferIn = 0, rxBufferOut = 0, rxCount = 0;
 volatile unsigned int rxBufferIn = 0, rxBufferOut = 0, rxCount = 0;
 #endif
 
+void l_Unimplemented();
+
+typedef struct
+{
+    char* name;
+    char key;
+    void (*fn)(void);
+}MENU_OPTION;
+
+typedef struct
+{
+    char* name;
+    MENU_OPTION* optionList;
+}MENU;
+
+typedef enum
+{
+    MAIN_MENU = 0,
+    ALL_MENUS
+}MENU_ENUM;
+
+unsigned char l_MenuStack[16];
+unsigned char l_MenuStackPointer = 0;
+
+MENU_OPTION l_MainMenuOptions[] = 
+{
+    {"Demo", '1', l_Unimplemented},
+    {"\0", '\0', 0}
+};
+
+MENU l_MainMenu = {"MAIN MENU", l_MainMenuOptions};
+
+MENU *l_MenuList[] = 
+{
+    &l_MainMenu
+};
+
 void l_UARTSetup()
 {
     //Setup RP ports
@@ -51,12 +88,63 @@ void l_CursorHome()
     Debug_PutStr(escSeq);
 }
 
+void l_ShowMenu(unsigned char menu)
+{
+    MENU* m = l_MenuList[menu];
+    MENU_OPTION* option = m->optionList;
+    
+    Debug_PutStr(m->name);
+    Debug_PutStr("\r\n\n");
+    
+    while(option->key)
+    {
+        Debug_PutChar(option->key);
+        Debug_PutStr(". ");
+        Debug_PutStr(option->name);
+        Debug_PutStr("\r\n");
+        option++;
+    }
+}
+
+void l_ExecOption(unsigned char menu, char key)
+{
+    MENU* m = l_MenuList[menu];
+    MENU_OPTION* option = m->optionList;
+    
+    while(option->key)
+    {
+        if(option->key == key)
+        {
+            if(option->fn)
+                option->fn();
+
+            return;
+        }
+        option++;
+    }
+}
+
+void l_ChangeMenu(unsigned char menu)
+{
+    l_MenuStackPointer++;
+    l_MenuStack[l_MenuStackPointer] = menu;
+}
+
+void l_UpMenu()
+{
+    if(l_MenuStackPointer > 0)
+        l_MenuStackPointer--;
+}
+
 void Debug_Setup()
 {
     l_UARTSetup();
     
     l_ClearScreen();
-    l_CursorHome();    
+    l_CursorHome();
+    
+    l_MenuStack[0] = MAIN_MENU;
+    l_ShowMenu(l_MenuStack[l_MenuStackPointer]);
 }
 
 void Debug_Background()
@@ -64,13 +152,21 @@ void Debug_Background()
     if(Debug_CharAvailable())
     {
         char c = Debug_GetChar();
-        if(c == 0x1B)
+        if(c == 0x0D)
         {
             l_ClearScreen();
             l_CursorHome();
+            l_ShowMenu(l_MenuStack[l_MenuStackPointer]);
         }
-        else if(c == 0x0D)
-            Debug_PutStr("HELLO WORLD\r\n");
+        else if(c == 0x1B)
+        {
+            l_ClearScreen();
+            l_CursorHome();
+            l_UpMenu();
+            l_ShowMenu(l_MenuStack[l_MenuStackPointer]);
+        }
+        else
+            l_ExecOption(l_MenuStack[l_MenuStackPointer], c);
     }
 }
 
@@ -161,4 +257,10 @@ void __attribute__((__interrupt__, auto_psv)) _U4RXInterrupt(void)
         rxBufferIn = 0;
     
     _U4RXIF = 0;
+}
+
+//Menu Functions
+void l_Unimplemented()
+{
+    Debug_PutStr("UNIMPLEMENTED\r\n");
 }
