@@ -12,6 +12,12 @@ void Debug_Setup();
 
 void Debug_Background();
 
+void Debug_PutChar(char c);
+void Debug_PutStr(char* str, unsigned char length);
+
+unsigned int Debug_CharAvailable();
+char Debug_GetChar();
+
 #ifdef	__cplusplus
 }
 #endif
