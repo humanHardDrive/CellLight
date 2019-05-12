@@ -65,6 +65,7 @@ void l_UARTSetup()
     U4STAbits.UTXISEL0 = 0;
     U4STAbits.UTXISEL1 = 1;
     U4MODEbits.BRGH = 1;
+    //Clear the interrupt flags
     _U4TXIF = 0;
     _U4RXIF = 0;
     //Enable RX interrupt
