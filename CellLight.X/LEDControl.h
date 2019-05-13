@@ -20,7 +20,7 @@ typedef union
     
 void LEDControl_Setup();
 
-void LEDCOntrol_WriteColor(_GRB color);
+void LEDControl_WriteColor(_GRB color);
 
 #ifdef	__cplusplus
 }

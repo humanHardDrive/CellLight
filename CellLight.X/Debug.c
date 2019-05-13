@@ -144,8 +144,7 @@ void Debug_Setup()
     l_ClearScreen();
     l_CursorHome();
     
-    l_MenuStack[0] = MAIN_MENU;
-    l_ShowMenu(l_MenuStack[l_MenuStackPointer]);
+    Debug_PutStr("RESET\r\n");
 }
 
 void Debug_Background()

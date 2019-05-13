@@ -81,3 +81,33 @@ void CommRouter_Setup()
 void CommRouter_Background()
 {
 }
+
+void __attribute__((__interrupt__, auto_psv)) _U1TXInterrupt(void)
+{
+    _U1TXIF = 0;
+}
+
+void __attribute__((__interrupt__, auto_psv)) _U1RXInterrupt(void)
+{
+    _U1RXIF = 0;
+}
+
+void __attribute__((__interrupt__, auto_psv)) _U2TXInterrupt(void)
+{
+    _U2TXIF = 0;
+}
+
+void __attribute__((__interrupt__, auto_psv)) _U2RXInterrupt(void)
+{
+    _U2RXIF = 0;
+}
+
+void __attribute__((__interrupt__, auto_psv)) _U3TXInterrupt(void)
+{
+    _U3TXIF = 0;
+}
+
+void __attribute__((__interrupt__, auto_psv)) _U3RXInterrupt(void)
+{
+    _U3RXIF = 0;
+}
