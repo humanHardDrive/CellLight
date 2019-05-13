@@ -1,4 +1,5 @@
 #include "Debug.h"
+#include "LEDControl.h"
 
 #include <xc.h>
 
@@ -19,6 +20,12 @@ volatile unsigned int rxBufferIn = 0, rxBufferOut = 0, rxCount = 0;
 
 void l_Unimplemented();
 
+//Main menu prototypes
+void l_ChangeToColorMenu();
+
+//Color menu prototypes
+void l_TurnOff();
+
 typedef struct
 {
     char* name;
@@ -35,6 +42,7 @@ typedef struct
 typedef enum
 {
     MAIN_MENU = 0,
+    COLOR_MENU,
     ALL_MENUS
 }MENU_ENUM;
 
@@ -43,15 +51,23 @@ unsigned char l_MenuStackPointer = 0;
 
 MENU_OPTION l_MainMenuOptions[] = 
 {
-    {"Demo", '1', l_Unimplemented},
+    {"Color Control", '1', l_ChangeToColorMenu},
+    {"\0", '\0', 0}
+};
+
+MENU_OPTION l_ColorMenuOptions[] = 
+{
+    {"Turn Off", '1', l_TurnOff},
     {"\0", '\0', 0}
 };
 
 MENU l_MainMenu = {"MAIN MENU", l_MainMenuOptions};
+MENU l_ColorMenu = {"COLOR CONTROL", l_ColorMenuOptions};
 
 MENU *l_MenuList[] = 
 {
-    &l_MainMenu
+    &l_MainMenu,
+    &l_ColorMenu
 };
 
 void l_UARTSetup()
@@ -263,4 +279,25 @@ void __attribute__((__interrupt__, auto_psv)) _U4RXInterrupt(void)
 void l_Unimplemented()
 {
     Debug_PutStr("UNIMPLEMENTED\r\n");
+}
+
+//Main menu functions
+void l_ChangeToColorMenu()
+{
+    l_ChangeMenu(COLOR_MENU);
+    
+    l_ClearScreen();
+    l_CursorHome();
+    l_ShowMenu(l_MenuStack[l_MenuStackPointer]);    
+}
+
+//Color menu functions
+void l_TurnOff()
+{
+    _GRB color;
+    color.r = 0;
+    color.g = 0;
+    color.b = 0;
+    
+    LEDControl_WriteColor(color);
 }

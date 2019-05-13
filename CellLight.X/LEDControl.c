@@ -28,7 +28,7 @@ void l_DMASetup()
     
     DMACH0bits.SAMODE = 0b01; //Source address increments
     DMACH0bits.DAMODE = 0b00; //Destination address is constant
-    DMACH0bits.TRMODE = 0; //One-shot
+    DMACH0bits.TRMODE = 1; //Repeated one-shot
     DMACH0bits.RELOAD = 1; //Reset counts at end of transfer
     DMACH0bits.SIZE = 0; //Word size
     
