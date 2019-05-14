@@ -5,6 +5,12 @@
 extern "C" {
 #endif
 
+#define COMM_TX_BUFFER_SIZE     256
+#define COMM_RX_BUFFER_SIZE     256
+#define NUM_UART_PORTS          3
+    
+#define PROC_BYTE_CNT   1
+    
 #define MSG_STX     0x55
 #define MSG_ETX     0xAA
     

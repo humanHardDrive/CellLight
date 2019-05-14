@@ -2,6 +2,29 @@
 
 #include <xc.h>
 
+typedef struct
+{
+    uint8_t r;
+    uint8_t g;
+    uint8_t b;
+}COLOR_CHANGE_MSG;
+
+enum
+{
+    WAITING_FOR_STX = 0,
+    WAITING_FOR_DEPTH,
+    WAITING_FOR_PATH_LSB,
+    WAITING_FOR_PATH_MSB,
+    WAITING_FOR_CMD,
+    WAITING_FOR_LENGTH,
+    WAITING_FOR_PAYLOAD,
+    WAITING_FOR_ETX
+};
+
+uint8_t parseState[NUM_UART_PORTS] = {WAITING_FOR_STX, 
+                                      WAITING_FOR_STX, 
+                                      WAITING_FOR_STX};
+
 void l_UART1Setup()
 {
     //Setup RP ports
@@ -76,6 +99,43 @@ void CommRouter_Setup()
     l_UART1Setup();
     l_UART2Setup();
     l_UART3Setup();
+}
+
+void l_ParseByte(unsigned char uart, unsigned char b)
+{
+    switch(parseState[uart])
+    {
+        case WAITING_FOR_STX:
+            if(b == MSG_STX)
+            {
+                parseState[uart] = WAITING_FOR_DEPTH;
+            }
+            break;
+            
+        case WAITING_FOR_DEPTH:
+            parseState[uart] = WAITING_FOR_PATH_LSB;
+            break;
+            
+        case WAITING_FOR_PATH_LSB:
+            break;            
+            
+        case WAITING_FOR_PATH_MSB:
+            break;
+            
+        case WAITING_FOR_CMD:
+            break;
+            
+        case WAITING_FOR_LENGTH:
+            break;
+            
+        case WAITING_FOR_PAYLOAD:
+            break;
+            
+        case WAITING_FOR_ETX:
+            if(b == MSG_ETX)
+                parseState[uart] = WAITING_FOR_STX;
+            break;
+    }
 }
 
 void CommRouter_Background()
