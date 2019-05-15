@@ -25,6 +25,32 @@ uint8_t parseState[NUM_UART_PORTS] = {WAITING_FOR_STX,
                                       WAITING_FOR_STX, 
                                       WAITING_FOR_STX};
 
+static volatile unsigned char txBuffer[NUM_UART_PORTS][COMM_TX_BUFFER_SIZE];
+static volatile unsigned char rxBuffer[NUM_UART_PORTS][COMM_RX_BUFFER_SIZE];
+
+#if COMM_TX_BUFFER_SIZE < 256
+volatile unsigned char txBufferIn[NUM_UART_PORTS] = {0,0,0};
+volatile unsigned char txBufferOut[NUM_UART_PORTS] = {0,0,0};
+volatile unsigned char txCount[NUM_UART_PORTS] = {0,0,0};
+#else
+static volatile unsigned int txBufferIn[NUM_UART_PORTS] = {0,0,0};
+static volatile unsigned int txBufferOut[NUM_UART_PORTS] = {0,0,0};
+static volatile unsigned int txCount[NUM_UART_PORTS] = {0,0,0};
+#endif
+
+#if COMM_RX_BUFFER_SIZE < 256
+volatile unsigned char rxBufferIn[NUM_UART_PORTS] = {0,0,0};
+volatile unsigned char rxBufferOut[NUM_UART_PORTS] = {0,0,0};
+volatile unsigned char rxCount[NUM_UART_PORTS] = {0,0,0};
+#else
+static volatile unsigned int rxBufferIn[NUM_UART_PORTS] = {0,0,0};
+static volatile unsigned int rxBufferOut[NUM_UART_PORTS] = {0,0,0};
+static volatile unsigned int rxCount[NUM_UART_PORTS] = {0,0,0};
+#endif
+
+volatile uint16_t* TXREG[] = {&U1TXREG, &U2TXREG, &U3TXREG};
+volatile uint16_t* RXREG[] = {&U1RXREG, &U2RXREG, &U3RXREG};
+
 void l_UART1Setup()
 {
     //Setup RP ports
@@ -101,6 +127,20 @@ void CommRouter_Setup()
     l_UART3Setup();
 }
 
+unsigned int l_Available(unsigned char uart)
+{
+    if(uart < NUM_UART_PORTS)
+        return rxCount[uart];
+    
+    return 0;
+}
+
+void l_Write(unsigned char uart, unsigned char c)
+{
+    if(uart < NUM_UART_PORTS)
+        *TXREG[uart] = c;
+}
+
 void l_ParseByte(unsigned char uart, unsigned char b)
 {
     switch(parseState[uart])
@@ -142,32 +182,62 @@ void CommRouter_Background()
 {
 }
 
+inline void l_TXUpdate(unsigned char uart)
+{    
+    txCount[uart]--;
+    if(txCount[uart])
+    {
+        U1TXREG = txBuffer[uart][txBufferOut[uart]];
+        txBufferOut[uart]++;
+        
+        if(txBufferOut[uart] >= COMM_TX_BUFFER_SIZE)
+            txBufferOut[uart] = 0;
+    }
+}
+
+inline void l_RXUpdate(unsigned char uart)
+{
+    rxCount[uart]++;
+    
+    rxBuffer[uart][rxBufferIn[uart]] = *RXREG[uart];
+    rxBufferIn[uart]++;
+    
+    if(rxBufferIn[uart] >= COMM_RX_BUFFER_SIZE)
+        rxBufferIn[uart] = 0;
+}
+
 void __attribute__((__interrupt__, auto_psv)) _U1TXInterrupt(void)
 {
+    l_TXUpdate(0);
     _U1TXIF = 0;
 }
 
 void __attribute__((__interrupt__, auto_psv)) _U1RXInterrupt(void)
 {
+    l_RXUpdate(0);
     _U1RXIF = 0;
 }
 
 void __attribute__((__interrupt__, auto_psv)) _U2TXInterrupt(void)
 {
+    l_TXUpdate(1);
     _U2TXIF = 0;
 }
 
 void __attribute__((__interrupt__, auto_psv)) _U2RXInterrupt(void)
 {
+    l_RXUpdate(1);
     _U2RXIF = 0;
 }
 
 void __attribute__((__interrupt__, auto_psv)) _U3TXInterrupt(void)
 {
+    l_TXUpdate(2);
     _U3TXIF = 0;
 }
 
 void __attribute__((__interrupt__, auto_psv)) _U3RXInterrupt(void)
 {
+    l_RXUpdate(2);
     _U3RXIF = 0;
 }
