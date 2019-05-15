@@ -141,6 +141,24 @@ void l_Write(unsigned char uart, unsigned char c)
         *TXREG[uart] = c;
 }
 
+void l_CycMemCpy(void* dst, void* src, unsigned int srcStart,
+                 unsigned int srcLen, unsigned int cpyLen)
+{
+    unsigned int count = 0;
+    
+    while(count < cpyLen)
+    {
+        *((uint8_t*)dst) = *((uint8_t*)src + srcStart);
+        
+        dst++;
+        srcStart++;
+        if(srcStart >= srcLen)
+            srcStart = 0;
+        
+        count++;
+    }
+}
+
 void l_ParseByte(unsigned char uart, unsigned char b)
 {
     switch(parseState[uart])
