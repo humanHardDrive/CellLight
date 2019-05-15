@@ -27,6 +27,7 @@ void l_ChangeToColorMenu();
 //Color menu prototypes
 void l_TurnOff();
 void l_SetColor();
+void l_CycleColor();
 
 typedef struct
 {
@@ -61,6 +62,7 @@ MENU_OPTION l_ColorMenuOptions[] =
 {
     {"Turn Off", '1', l_TurnOff},
     {"Set Color", '2', l_SetColor},
+    {"Cycle Color", '3', l_CycleColor},
     {"\0", '\0', 0}
 };
 
@@ -379,4 +381,24 @@ void l_SetColor()
     Debug_PutStr("\r\n");
     
     LEDControl_WriteColor(color);
+}
+
+void l_CycleColor()
+{
+    uint64_t count = 0;
+    _GRB color;
+    color.combined = 0;
+    
+    while(!Debug_GetChar())
+    {
+        LEDControl_WriteColor(color);
+        
+        while(count < 10000)
+            count++;
+        count = 0;
+        
+        color.combined++;
+        if(color.combined > 0xFFFFFF)
+            color.combined = 0;
+    }
 }
