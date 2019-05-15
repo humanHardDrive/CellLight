@@ -2,6 +2,7 @@
 #include "LEDControl.h"
 
 #include <xc.h>
+#include <stdlib.h>
 
 volatile unsigned char txBuffer[DEBUG_TX_BUFFER_SIZE];
 volatile unsigned char rxBuffer[DEBUG_RX_BUFFER_SIZE];
@@ -25,6 +26,7 @@ void l_ChangeToColorMenu();
 
 //Color menu prototypes
 void l_TurnOff();
+void l_SetColor();
 
 typedef struct
 {
@@ -58,6 +60,7 @@ MENU_OPTION l_MainMenuOptions[] =
 MENU_OPTION l_ColorMenuOptions[] = 
 {
     {"Turn Off", '1', l_TurnOff},
+    {"Set Color", '2', l_SetColor},
     {"\0", '\0', 0}
 };
 
@@ -103,6 +106,37 @@ void l_CursorHome()
 {
     char escSeq[] = {0x1B, '[', 'H', '\0'};
     Debug_PutStr(escSeq);
+}
+
+unsigned char l_GetString(char* str, unsigned char maxLength)
+{
+    char done = 0;
+    unsigned char count = 0;
+    
+    while(!done && count < (maxLength - 1))
+    {
+        if(Debug_CharAvailable())
+        {
+            char c = Debug_GetChar();
+            
+            if(c == 0x0D)
+                done = 1;
+            else
+            {
+                //Echo the character back
+                Debug_PutChar(c);
+                
+                //Append the character
+                *str = c;
+                str++;
+                count++;
+            }
+        }
+    }
+    
+    //Add the null terminator
+    *str = '\0';
+    return count;
 }
 
 void l_ShowMenu(unsigned char menu)
@@ -298,6 +332,51 @@ void l_TurnOff()
     color.r = 0;
     color.g = 0;
     color.b = 0;
+    
+    LEDControl_WriteColor(color);
+}
+
+void l_SetColor()
+{
+    char buffer[16];
+    int val;
+    _GRB color;
+    
+    Debug_PutStr("Red: ");
+    l_GetString(buffer, 16);
+    val = atoi(buffer);
+    if(val >= 0 && val <= 0xFF)
+        color.r = (uint8_t)val;
+    else
+    {
+        Debug_PutStr("Invalid value\r\n");
+        return;
+    }
+    Debug_PutStr("\r\n");
+    
+    Debug_PutStr("Green: ");
+    l_GetString(buffer, 16);
+    val = atoi(buffer);
+    if(val >= 0 && val <= 0xFF)
+        color.g = (uint8_t)val;
+    else
+    {
+        Debug_PutStr("Invalid value\r\n");
+        return;
+    }
+    Debug_PutStr("\r\n");
+    
+    Debug_PutStr("Blue: ");
+    l_GetString(buffer, 16);
+    val = atoi(buffer);
+    if(val >= 0 && val <= 0xFF)
+        color.b = (uint8_t)val;
+    else
+    {
+        Debug_PutStr("Invalid value\r\n");
+        return;
+    }
+    Debug_PutStr("\r\n");
     
     LEDControl_WriteColor(color);
 }

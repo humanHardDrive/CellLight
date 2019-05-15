@@ -10,8 +10,8 @@ void l_Timer2Setup()
     _RP5R = 13; //Output compare 1 module
     OC1CON1bits.OCM = 0;
     OC1R = 0;
-    OC1RS = 0;
-    OC1CON1bits.OCTSEL = 0; //Use timer 2 as comparison
+    OC1RS = 11;
+    OC1CON1bits.OCTSEL = 0; //Use timer2 as clock source
     OC1CON1bits.OCM = 6; //Edge aligned PWM
     
     T2CONbits.TON = 0; //Disable timer
@@ -38,7 +38,7 @@ void l_DMASetup()
     DMAH = ((volatile unsigned int)&ColorBuffer[0]) + 50;
     
     DMASRC0 = (volatile unsigned int)&ColorBuffer[0];
-    DMADST0 = (volatile unsigned int)&OC1RS;
+    DMADST0 = (volatile unsigned int)&OC1R;
     DMACNT0 = 24; //24 word transfer size
     
     _DMA0IF = 0; //Clear flag
@@ -56,6 +56,7 @@ void LEDControl_WriteColor(_GRB color)
 {
     unsigned char i;
     uint32_t mask = 0x800000;
+    OC1CON1bits.OCM = 0;
     
     if(!isWriting)
     {
@@ -71,13 +72,10 @@ void LEDControl_WriteColor(_GRB color)
             
             if(i == 0)
                 OC1R = v;
-            else if(i == 1)
-                OC1RS = v;
             else
-                ColorBuffer[i - 2] = v;
+                ColorBuffer[i - 1] = v;
         }
         
-        ColorBuffer[22] = 0;
         ColorBuffer[23] = 0;
         OC1CON1bits.OCM = 6;
         
