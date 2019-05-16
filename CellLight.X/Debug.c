@@ -386,19 +386,44 @@ void l_SetColor()
 void l_CycleColor()
 {
     uint64_t count = 0;
+    uint8_t phase = 0;
     _GRB color;
     color.combined = 0;
+    color.r = 0x7F;
     
     while(!Debug_GetChar())
     {
         LEDControl_WriteColor(color);
         
-        while(count < 10000)
+        while(count < 100000)
             count++;
         count = 0;
         
-        color.combined++;
-        if(color.combined > 0xFFFFFF)
-            color.combined = 0;
+        switch(phase)
+        {
+            case 0:
+                color.r--;
+                color.g++;
+                
+                if(!color.r)
+                    phase = 1;
+                break;
+                
+            case 1:
+                color.g--;
+                color.b++;
+                
+                if(!color.g)
+                    phase = 2;
+                break;
+                
+            case 2:
+                color.b--;
+                color.r++;
+                
+                if(!color.b)
+                    phase = 0;
+                break;
+        }
     }
 }
