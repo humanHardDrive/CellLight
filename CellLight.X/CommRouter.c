@@ -31,21 +31,17 @@ static volatile unsigned char rxBuffer[NUM_UART_PORTS][COMM_RX_BUFFER_SIZE];
 #if COMM_TX_BUFFER_SIZE < 256
 volatile unsigned char txBufferIn[NUM_UART_PORTS] = {0,0,0};
 volatile unsigned char txBufferOut[NUM_UART_PORTS] = {0,0,0};
-volatile unsigned char txCount[NUM_UART_PORTS] = {0,0,0};
 #else
 static volatile unsigned int txBufferIn[NUM_UART_PORTS] = {0,0,0};
 static volatile unsigned int txBufferOut[NUM_UART_PORTS] = {0,0,0};
-static volatile unsigned int txCount[NUM_UART_PORTS] = {0,0,0};
 #endif
 
 #if COMM_RX_BUFFER_SIZE < 256
 volatile unsigned char rxBufferIn[NUM_UART_PORTS] = {0,0,0};
 volatile unsigned char rxBufferOut[NUM_UART_PORTS] = {0,0,0};
-volatile unsigned char rxCount[NUM_UART_PORTS] = {0,0,0};
 #else
 static volatile unsigned int rxBufferIn[NUM_UART_PORTS] = {0,0,0};
 static volatile unsigned int rxBufferOut[NUM_UART_PORTS] = {0,0,0};
-static volatile unsigned int rxCount[NUM_UART_PORTS] = {0,0,0};
 #endif
 
 //Register definitions
@@ -59,6 +55,38 @@ uint8_t u8NextDepth[NUM_UART_PORTS] = {0, 0, 0};
 uint8_t u8Command[NUM_UART_PORTS] = {0, 0, 0};
 uint8_t u8CommandLen[NUM_UART_PORTS] = {0, 0, 0};
 uint16_t u16PayloadIndex[NUM_UART_PORTS] = {0, 0, 0};
+
+#define DISABLE_TX_INT(uart)    \
+{                               \
+    switch(uart)                \
+    {                           \
+        case 0:                 \
+        _U1TXIE = 0;            \
+        break;                  \
+        case 1:                 \
+        _U2TXIE = 0;            \
+        break;                  \
+        case 2:                 \
+        _U3TXIE = 0;            \
+        break;                  \
+    }                           \
+}
+
+#define ENABLE_TX_INT(uart)     \
+{                               \
+    switch(uart)                \
+    {                           \
+        case 0:                 \
+        _U1TXIE = 1;            \
+        break;                  \
+        case 1:                 \
+        _U2TXIE = 2;            \
+        break;                  \
+        case 2:                 \
+        _U3TXIE = 3;            \
+        break;                  \
+    }                           \
+}
 
 void l_UART1Setup()
 {
@@ -139,7 +167,7 @@ void CommRouter_Setup()
 unsigned int l_Available(unsigned char uart)
 {
     if(uart < NUM_UART_PORTS)
-        return rxCount[uart];
+        return (rxBufferIn[uart] != rxBufferOut[uart]);
     
     return 0;
 }
@@ -147,7 +175,9 @@ unsigned int l_Available(unsigned char uart)
 void l_Write(unsigned char uart, unsigned char c)
 {
     if(uart < NUM_UART_PORTS)
-        *TXREG[uart] = c;
+    {
+        
+    }
 }
 
 void l_WriteArr(uint8_t uart, uint8_t* arr, uint8_t len)
@@ -259,21 +289,16 @@ void CommRouter_Background()
 
 inline void l_TXUpdate(unsigned char uart)
 {    
-    txCount[uart]--;
-    if(txCount[uart])
-    {
+    txBufferOut[uart]++;
+    if(txBufferOut[uart] >= COMM_TX_BUFFER_SIZE)
+        txBufferOut[uart] = 0;
+    
+    if(txBufferOut[uart] != txBufferIn[uart])
         U1TXREG = txBuffer[uart][txBufferOut[uart]];
-        txBufferOut[uart]++;
-        
-        if(txBufferOut[uart] >= COMM_TX_BUFFER_SIZE)
-            txBufferOut[uart] = 0;
-    }
 }
 
 inline void l_RXUpdate(unsigned char uart)
 {
-    rxCount[uart]++;
-    
     rxBuffer[uart][rxBufferIn[uart]] = *RXREG[uart];
     rxBufferIn[uart]++;
     
