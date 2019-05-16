@@ -48,8 +48,17 @@ static volatile unsigned int rxBufferOut[NUM_UART_PORTS] = {0,0,0};
 static volatile unsigned int rxCount[NUM_UART_PORTS] = {0,0,0};
 #endif
 
+//Register definitions
 volatile uint16_t* TXREG[] = {&U1TXREG, &U2TXREG, &U3TXREG};
 volatile uint16_t* RXREG[] = {&U1RXREG, &U2RXREG, &U3RXREG};
+//Info to route the message
+unsigned char bNeedToProcess[NUM_UART_PORTS] = {1, 1, 1};
+uint16_t u16NextPath[NUM_UART_PORTS] = {0, 0, 0};
+uint8_t u8NextDepth[NUM_UART_PORTS] = {0, 0, 0};
+//Current command information
+uint8_t u8Command[NUM_UART_PORTS] = {0, 0, 0};
+uint8_t u8CommandLen[NUM_UART_PORTS] = {0, 0, 0};
+uint16_t u16PayloadIndex[NUM_UART_PORTS] = {0, 0, 0};
 
 void l_UART1Setup()
 {
@@ -141,6 +150,11 @@ void l_Write(unsigned char uart, unsigned char c)
         *TXREG[uart] = c;
 }
 
+void l_WriteArr(uint8_t uart, uint8_t* arr, uint8_t len)
+{
+    
+}
+
 void l_CycMemCpy(void* dst, void* src, unsigned int srcStart,
                  unsigned int srcLen, unsigned int cpyLen)
 {
@@ -161,29 +175,68 @@ void l_CycMemCpy(void* dst, void* src, unsigned int srcStart,
 
 void l_ParseByte(unsigned char uart, unsigned char b)
 {
+    //Pass the message through
+    if(!bNeedToProcess[uart])
+        l_Write(0, 0);
+    
     switch(parseState[uart])
     {
         case WAITING_FOR_STX:
             if(b == MSG_STX)
             {
                 parseState[uart] = WAITING_FOR_DEPTH;
+                bNeedToProcess[uart] = 1;
+                u16NextPath[uart] = 0;
             }
             break;
             
         case WAITING_FOR_DEPTH:
             parseState[uart] = WAITING_FOR_PATH_LSB;
+            u8NextDepth[uart] = b;
+            
+            //This message isn't for me
+            if(u8NextDepth[uart])
+            {
+                //No need to process
+                bNeedToProcess[uart] = 0;
+                u8NextDepth[uart]--; //Decrement the depth
+                //Wait for the path info to figure out where to route message
+            }
             break;
             
         case WAITING_FOR_PATH_LSB:
+            ((uint8_t*)&u16NextPath[uart])[0] = b;
             break;            
             
         case WAITING_FOR_PATH_MSB:
+            ((uint8_t*)&u16NextPath[uart])[1] = b;
+            
+            if(!bNeedToProcess[uart])
+            {
+                uint8_t nextUart = uart;
+                //Calculate where to route this message to
+                if(u16NextPath[uart] & 0x01)
+                    nextUart = (uart + 1) % NUM_UART_PORTS;
+                else
+                    nextUart = (uart + NUM_UART_PORTS) % NUM_UART_PORTS;
+                    
+                //Shift the path for the next link
+                u16NextPath[uart] >>= 1;
+                
+                //Start sending a new message
+            }
             break;
             
         case WAITING_FOR_CMD:
+            u8Command[uart] = b;
             break;
             
         case WAITING_FOR_LENGTH:
+            u8CommandLen[uart] = b;
+            if(b)
+                parseState[uart] = WAITING_FOR_PAYLOAD;
+            else
+                parseState[uart] = WAITING_FOR_ETX;
             break;
             
         case WAITING_FOR_PAYLOAD:
@@ -191,7 +244,11 @@ void l_ParseByte(unsigned char uart, unsigned char b)
             
         case WAITING_FOR_ETX:
             if(b == MSG_ETX)
+            {
+                //Start the state machine over again
                 parseState[uart] = WAITING_FOR_STX;
+                bNeedToProcess[uart] = 1; //Reset this to not send the STX
+            }
             break;
     }
 }
