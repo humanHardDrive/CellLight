@@ -44,49 +44,24 @@ static volatile unsigned int rxBufferIn[NUM_UART_PORTS] = {0,0,0};
 static volatile unsigned int rxBufferOut[NUM_UART_PORTS] = {0,0,0};
 #endif
 
+void l_Write1(uint8_t);
+void l_Write2(uint8_t);
+void l_Write3(uint8_t);
+
 //Register definitions
 volatile uint16_t* TXREG[] = {&U1TXREG, &U2TXREG, &U3TXREG};
 volatile uint16_t* RXREG[] = {&U1RXREG, &U2RXREG, &U3RXREG};
+//Port specific writing function
+void (*WRITEFN[])(uint8_t) = {l_Write1, l_Write2, l_Write3};
 //Info to route the message
 unsigned char bNeedToProcess[NUM_UART_PORTS] = {1, 1, 1};
 uint16_t u16NextPath[NUM_UART_PORTS] = {0, 0, 0};
 uint8_t u8NextDepth[NUM_UART_PORTS] = {0, 0, 0};
+uint8_t u8NextUART[NUM_UART_PORTS] = {0, 0, 0};
 //Current command information
 uint8_t u8Command[NUM_UART_PORTS] = {0, 0, 0};
 uint8_t u8CommandLen[NUM_UART_PORTS] = {0, 0, 0};
 uint16_t u16PayloadIndex[NUM_UART_PORTS] = {0, 0, 0};
-
-#define DISABLE_TX_INT(uart)    \
-{                               \
-    switch(uart)                \
-    {                           \
-        case 0:                 \
-        _U1TXIE = 0;            \
-        break;                  \
-        case 1:                 \
-        _U2TXIE = 0;            \
-        break;                  \
-        case 2:                 \
-        _U3TXIE = 0;            \
-        break;                  \
-    }                           \
-}
-
-#define ENABLE_TX_INT(uart)     \
-{                               \
-    switch(uart)                \
-    {                           \
-        case 0:                 \
-        _U1TXIE = 1;            \
-        break;                  \
-        case 1:                 \
-        _U2TXIE = 2;            \
-        break;                  \
-        case 2:                 \
-        _U3TXIE = 3;            \
-        break;                  \
-    }                           \
-}
 
 void l_UART1Setup()
 {
@@ -172,15 +147,17 @@ unsigned int l_Available(unsigned char uart)
     return 0;
 }
 
-void l_Write(unsigned char uart, unsigned char c)
+void l_Write1(uint8_t c)
 {
-    if(uart < NUM_UART_PORTS)
-    {
-        
-    }
+    
 }
 
-void l_WriteArr(uint8_t uart, uint8_t* arr, uint8_t len)
+void l_Write2(uint8_t c)
+{
+    
+}
+
+void l_Write3(uint8_t c)
 {
     
 }
@@ -207,7 +184,7 @@ void l_ParseByte(unsigned char uart, unsigned char b)
 {
     //Pass the message through
     if(!bNeedToProcess[uart])
-        l_Write(0, 0);
+        WRITEFN[u8NextUART[uart]](b);
     
     switch(parseState[uart])
     {
@@ -243,17 +220,25 @@ void l_ParseByte(unsigned char uart, unsigned char b)
             
             if(!bNeedToProcess[uart])
             {
-                uint8_t nextUart = uart;
+                u8NextUART[uart] = uart;
                 //Calculate where to route this message to
                 if(u16NextPath[uart] & 0x01)
-                    nextUart = (uart + 1) % NUM_UART_PORTS;
+                    u8NextUART[uart] = (uart + 1) % NUM_UART_PORTS;
                 else
-                    nextUart = (uart + NUM_UART_PORTS) % NUM_UART_PORTS;
+                    u8NextUART[uart] = (uart + NUM_UART_PORTS) % NUM_UART_PORTS;
                     
                 //Shift the path for the next link
                 u16NextPath[uart] >>= 1;
                 
                 //Start sending a new message
+                //Send the STX
+                WRITEFN[u8NextUART[uart]](MSG_STX);
+                //Then the decremented depth
+                WRITEFN[u8NextUART[uart]](u8NextDepth[uart]);
+                //Then the shifted path
+                WRITEFN[u8NextDepth[uart]](((uint8_t*)&u16NextPath[uart])[0]);
+                WRITEFN[u8NextDepth[uart]](((uint8_t*)&u16NextPath[uart])[0]);
+                //The rest of the message is passed through as it is received
             }
             break;
             
@@ -294,7 +279,7 @@ inline void l_TXUpdate(unsigned char uart)
         txBufferOut[uart] = 0;
     
     if(txBufferOut[uart] != txBufferIn[uart])
-        U1TXREG = txBuffer[uart][txBufferOut[uart]];
+        *TXREG[uart] = txBuffer[uart][txBufferOut[uart]];
 }
 
 inline void l_RXUpdate(unsigned char uart)
@@ -309,7 +294,10 @@ inline void l_RXUpdate(unsigned char uart)
 void __attribute__((__interrupt__, auto_psv)) _U1TXInterrupt(void)
 {
     l_TXUpdate(0);
+    
     _U1TXIF = 0;
+    if(txBufferOut[0] == txBufferIn[0])
+        _U1TXIE = 0;
 }
 
 void __attribute__((__interrupt__, auto_psv)) _U1RXInterrupt(void)
@@ -321,7 +309,10 @@ void __attribute__((__interrupt__, auto_psv)) _U1RXInterrupt(void)
 void __attribute__((__interrupt__, auto_psv)) _U2TXInterrupt(void)
 {
     l_TXUpdate(1);
+    
     _U2TXIF = 0;
+    if(txBufferOut[1] == txBufferIn[1])
+        _U2TXIE = 0;
 }
 
 void __attribute__((__interrupt__, auto_psv)) _U2RXInterrupt(void)
@@ -333,7 +324,10 @@ void __attribute__((__interrupt__, auto_psv)) _U2RXInterrupt(void)
 void __attribute__((__interrupt__, auto_psv)) _U3TXInterrupt(void)
 {
     l_TXUpdate(2);
+    
     _U3TXIF = 0;
+    if(txBufferOut[2] == txBufferIn[2])
+        _U3TXIE = 0;
 }
 
 void __attribute__((__interrupt__, auto_psv)) _U3RXInterrupt(void)
