@@ -149,17 +149,38 @@ unsigned int l_Available(unsigned char uart)
 
 void l_Write1(uint8_t c)
 {
+    txBuffer[0][txBufferIn[0]] = c;
     
+    txBufferIn[0]++;
+    if(txBufferIn[0] >= COMM_TX_BUFFER_SIZE)
+        txBufferIn[0] = 0;
+    
+    //Let the interrupt take care of restarting the transmit
+    _U1TXIE = 1;
 }
 
 void l_Write2(uint8_t c)
 {
+    txBuffer[1][txBufferIn[1]] = c;
     
+    txBufferIn[1]++;
+    if(txBufferIn[1] >= COMM_TX_BUFFER_SIZE)
+        txBufferIn[1] = 0;
+    
+    //Let the interrupt take care of restarting the transmit
+    _U2TXIE = 1;
 }
 
 void l_Write3(uint8_t c)
 {
+    txBuffer[2][txBufferIn[2]] = c;
     
+    txBufferIn[2]++;
+    if(txBufferIn[2] >= COMM_TX_BUFFER_SIZE)
+        txBufferIn[2] = 0;
+    
+    //Let the interrupt take care of restarting the transmit
+    _U3TXIE = 1;
 }
 
 void l_CycMemCpy(void* dst, void* src, unsigned int srcStart,
