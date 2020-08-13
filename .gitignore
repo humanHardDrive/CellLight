@@ -2,3 +2,5 @@ build/
 dist/
 
 private/
+*.sch-bak
+Layout/fp-info-cache
