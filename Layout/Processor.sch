@@ -276,4 +276,8 @@ Wire Wire Line
 Connection ~ 1950 5100
 Wire Wire Line
 	1950 5100 2200 5100
+Text GLabel 2850 3700 0    50   Input ~ 0
+FRAM_WP
+Wire Wire Line
+	2850 3700 3400 3700
 $EndSCHEMATC
