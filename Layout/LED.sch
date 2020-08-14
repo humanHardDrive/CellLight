@@ -183,9 +183,36 @@ F 3 "" H 6300 4950 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Connection ~ 6300 4950
-Text GLabel 4200 2550 0    50   Input ~ 0
+Text GLabel 3700 2550 0    50   Input ~ 0
 PWM_OUT
-Wire Wire Line
-	4200 2550 4550 2550
+$Comp
+L Device:R_US R?
+U 1 1 5F35CE0C
+P 4200 2550
+F 0 "R?" V 3995 2550 50  0000 C CNN
+F 1 "470" V 4086 2550 50  0000 C CNN
+F 2 "" V 4240 2540 50  0001 C CNN
+F 3 "~" H 4200 2550 50  0001 C CNN
+	1    4200 2550
+	0    1    1    0   
+$EndComp
 Connection ~ 4550 2550
+Wire Wire Line
+	4350 2550 4550 2550
+Wire Wire Line
+	4050 2550 3700 2550
+$Comp
+L power:+5V #PWR?
+U 1 1 5F35EAE9
+P 6300 2400
+F 0 "#PWR?" H 6300 2250 50  0001 C CNN
+F 1 "+5V" H 6315 2573 50  0000 C CNN
+F 2 "" H 6300 2400 50  0001 C CNN
+F 3 "" H 6300 2400 50  0001 C CNN
+	1    6300 2400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6300 2400 6300 2650
+Connection ~ 6300 2650
 $EndSCHEMATC
