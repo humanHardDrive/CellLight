@@ -154,4 +154,57 @@ Wire Wire Line
 	2550 2900 2950 2900
 Wire Wire Line
 	2550 2100 2950 2100
+$Comp
+L Connector_Generic:Conn_01x06 J?
+U 1 1 5F395426
+P 6100 2700
+F 0 "J?" H 6018 3117 50  0000 C CNN
+F 1 "Conn_01x06" H 6018 3026 50  0000 C CNN
+F 2 "" H 6100 2700 50  0001 C CNN
+F 3 "~" H 6100 2700 50  0001 C CNN
+	1    6100 2700
+	-1   0    0    -1  
+$EndComp
+Text GLabel 6800 2500 2    50   Input ~ 0
+RESET
+Text GLabel 6800 2800 2    50   Input ~ 0
+PGED
+Text GLabel 6800 2900 2    50   Input ~ 0
+PGEC
+Wire Wire Line
+	6300 2500 6800 2500
+Wire Wire Line
+	6300 2800 6800 2800
+Wire Wire Line
+	6300 2900 6800 2900
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5F3966ED
+P 6600 2250
+F 0 "#PWR?" H 6600 2100 50  0001 C CNN
+F 1 "+3.3V" H 6615 2423 50  0000 C CNN
+F 2 "" H 6600 2250 50  0001 C CNN
+F 3 "" H 6600 2250 50  0001 C CNN
+	1    6600 2250
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5F396E80
+P 6600 3150
+F 0 "#PWR?" H 6600 2900 50  0001 C CNN
+F 1 "GND" H 6605 2977 50  0000 C CNN
+F 2 "" H 6600 3150 50  0001 C CNN
+F 3 "" H 6600 3150 50  0001 C CNN
+	1    6600 3150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6300 2600 6600 2600
+Wire Wire Line
+	6600 2600 6600 2250
+Wire Wire Line
+	6300 2700 6600 2700
+Wire Wire Line
+	6600 2700 6600 3150
 $EndSCHEMATC
