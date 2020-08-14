@@ -21,7 +21,7 @@ AR Path="/5F383B41" Ref="J?"  Part="1"
 AR Path="/5F3717FF/5F383B41" Ref="J1"  Part="1" 
 F 0 "J1" V 2350 2350 50  0000 R CNN
 F 1 "Conn_01x03" V 2450 2250 50  0000 R CNN
-F 2 "" H 2350 2100 50  0001 C CNN
+F 2 "Connector_PinHeader_1.00mm:PinHeader_1x03_P1.00mm_Vertical" H 2350 2100 50  0001 C CNN
 F 3 "~" H 2350 2100 50  0001 C CNN
 	1    2350 2100
 	-1   0    0    -1  
@@ -34,7 +34,7 @@ AR Path="/5F383B47" Ref="J?"  Part="1"
 AR Path="/5F3717FF/5F383B47" Ref="J2"  Part="1" 
 F 0 "J2" V 2350 3150 50  0000 R CNN
 F 1 "Conn_01x03" V 2450 3050 50  0000 R CNN
-F 2 "" H 2350 2900 50  0001 C CNN
+F 2 "Connector_PinHeader_1.00mm:PinHeader_1x03_P1.00mm_Vertical" H 2350 2900 50  0001 C CNN
 F 3 "~" H 2350 2900 50  0001 C CNN
 	1    2350 2900
 	-1   0    0    -1  
@@ -47,7 +47,7 @@ AR Path="/5F383B4D" Ref="J?"  Part="1"
 AR Path="/5F3717FF/5F383B4D" Ref="J3"  Part="1" 
 F 0 "J3" V 2350 3950 50  0000 R CNN
 F 1 "Conn_01x03" V 2450 3850 50  0000 R CNN
-F 2 "" H 2350 3700 50  0001 C CNN
+F 2 "Connector_PinHeader_1.00mm:PinHeader_1x03_P1.00mm_Vertical" H 2350 3700 50  0001 C CNN
 F 3 "~" H 2350 3700 50  0001 C CNN
 	1    2350 3700
 	-1   0    0    -1  
@@ -155,12 +155,12 @@ Wire Wire Line
 Wire Wire Line
 	2550 2100 2950 2100
 $Comp
-L Connector_Generic:Conn_01x06 J?
+L Connector_Generic:Conn_01x06 J4
 U 1 1 5F395426
 P 6100 2700
-F 0 "J?" H 6018 3117 50  0000 C CNN
+F 0 "J4" H 6018 3117 50  0000 C CNN
 F 1 "Conn_01x06" H 6018 3026 50  0000 C CNN
-F 2 "" H 6100 2700 50  0001 C CNN
+F 2 "Connector_PinHeader_1.00mm:PinHeader_1x06_P1.00mm_Vertical" H 6100 2700 50  0001 C CNN
 F 3 "~" H 6100 2700 50  0001 C CNN
 	1    6100 2700
 	-1   0    0    -1  
@@ -178,10 +178,10 @@ Wire Wire Line
 Wire Wire Line
 	6300 2900 6800 2900
 $Comp
-L power:+3.3V #PWR?
+L power:+3.3V #PWR0117
 U 1 1 5F3966ED
 P 6600 2250
-F 0 "#PWR?" H 6600 2100 50  0001 C CNN
+F 0 "#PWR0117" H 6600 2100 50  0001 C CNN
 F 1 "+3.3V" H 6615 2423 50  0000 C CNN
 F 2 "" H 6600 2250 50  0001 C CNN
 F 3 "" H 6600 2250 50  0001 C CNN
@@ -189,10 +189,10 @@ F 3 "" H 6600 2250 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR?
+L power:GND #PWR0118
 U 1 1 5F396E80
 P 6600 3150
-F 0 "#PWR?" H 6600 2900 50  0001 C CNN
+F 0 "#PWR0118" H 6600 2900 50  0001 C CNN
 F 1 "GND" H 6605 2977 50  0000 C CNN
 F 2 "" H 6600 3150 50  0001 C CNN
 F 3 "" H 6600 3150 50  0001 C CNN
