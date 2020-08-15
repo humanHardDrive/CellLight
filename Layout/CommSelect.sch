@@ -92,4 +92,19 @@ Text GLabel 7250 3750 2    50   Input ~ 0
 IO_COM
 Text GLabel 7250 3850 2    50   Input ~ 0
 PORT3_IO
+Text GLabel 5050 4550 0    50   Input ~ 0
+TX
+Text GLabel 5050 4750 0    50   Input ~ 0
+RX
+Wire Wire Line
+	5050 4550 5150 4550
+Wire Wire Line
+	5150 4550 5150 4750
+Wire Wire Line
+	5150 4750 5050 4750
+Wire Wire Line
+	5150 4550 5850 4550
+Connection ~ 5150 4550
+Text GLabel 5850 4550 2    50   Input ~ 0
+IO_COM
 $EndSCHEMATC

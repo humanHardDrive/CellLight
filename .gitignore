@@ -4,3 +4,4 @@ dist/
 private/
 *.sch-bak
 Layout/fp-info-cache
+*.kicad_pcb-bak
