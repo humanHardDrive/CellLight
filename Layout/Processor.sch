@@ -70,111 +70,79 @@ Wire Wire Line
 	1950 1650 1950 2000
 Text GLabel 1950 2000 3    50   Input ~ 0
 RESET
-Wire Wire Line
-	3400 1700 2850 1700
-Text GLabel 2850 1700 0    50   Input ~ 0
+Text GLabel 4100 1600 0    50   Input ~ 0
 RESET
 $Comp
 L Device:C C1
 U 1 1 5F36AEA4
-P 8450 1500
-F 0 "C1" V 8198 1500 50  0000 C CNN
-F 1 "10U" V 8289 1500 50  0000 C CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 8488 1350 50  0001 C CNN
-F 3 "~" H 8450 1500 50  0001 C CNN
-	1    8450 1500
+P 6250 1250
+F 0 "C1" V 5998 1250 50  0000 C CNN
+F 1 "10U" V 6089 1250 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 6288 1100 50  0001 C CNN
+F 3 "~" H 6250 1250 50  0001 C CNN
+	1    6250 1250
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	8200 1500 8300 1500
+	6000 1250 6100 1250
 $Comp
 L power:+3.3V #PWR0103
 U 1 1 5F36B77A
-P 8200 1150
-F 0 "#PWR0103" H 8200 1000 50  0001 C CNN
-F 1 "+3.3V" H 8215 1323 50  0000 C CNN
-F 2 "" H 8200 1150 50  0001 C CNN
-F 3 "" H 8200 1150 50  0001 C CNN
-	1    8200 1150
+P 5550 1250
+F 0 "#PWR0103" H 5550 1100 50  0001 C CNN
+F 1 "+3.3V" H 5565 1423 50  0000 C CNN
+F 2 "" H 5550 1250 50  0001 C CNN
+F 3 "" H 5550 1250 50  0001 C CNN
+	1    5550 1250
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	8200 1150 8200 1300
 $Comp
 L power:GND #PWR0104
 U 1 1 5F36C154
-P 8600 1500
-F 0 "#PWR0104" H 8600 1250 50  0001 C CNN
-F 1 "GND" H 8605 1327 50  0000 C CNN
-F 2 "" H 8600 1500 50  0001 C CNN
-F 3 "" H 8600 1500 50  0001 C CNN
-	1    8600 1500
+P 6400 1250
+F 0 "#PWR0104" H 6400 1000 50  0001 C CNN
+F 1 "GND" H 6405 1077 50  0000 C CNN
+F 2 "" H 6400 1250 50  0001 C CNN
+F 3 "" H 6400 1250 50  0001 C CNN
+	1    6400 1250
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR0105
 U 1 1 5F36C44E
-P 8200 4700
-F 0 "#PWR0105" H 8200 4450 50  0001 C CNN
-F 1 "GND" H 8205 4527 50  0000 C CNN
-F 2 "" H 8200 4700 50  0001 C CNN
-F 3 "" H 8200 4700 50  0001 C CNN
-	1    8200 4700
+P 5600 5500
+F 0 "#PWR0105" H 5600 5250 50  0001 C CNN
+F 1 "GND" H 5605 5327 50  0000 C CNN
+F 2 "" H 5600 5500 50  0001 C CNN
+F 3 "" H 5600 5500 50  0001 C CNN
+	1    5600 5500
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	8200 4700 8200 4600
-Wire Wire Line
-	3400 4100 2800 4100
-Wire Wire Line
-	3400 4300 2800 4300
-Text GLabel 2800 4100 0    50   Input ~ 0
+Text GLabel 7550 3400 2    50   Input ~ 0
 SCL
-Text GLabel 2800 4300 0    50   Input ~ 0
+Text GLabel 7550 3500 2    50   Input ~ 0
 SDA
-Wire Wire Line
-	3400 2000 2850 2000
-Wire Wire Line
-	3400 2100 2850 2100
-Wire Wire Line
-	3400 2200 2850 2200
-Text GLabel 2850 2100 0    50   Input ~ 0
+Text GLabel 7550 2700 2    50   Input ~ 0
 PGEC
-Text GLabel 2850 2200 0    50   Input ~ 0
+Text GLabel 7550 2600 2    50   Input ~ 0
 PGED
-Text GLabel 2850 2000 0    50   Input ~ 0
+Text GLabel 7550 3300 2    50   Input ~ 0
 PORT1_IO
-Wire Wire Line
-	3400 3200 2850 3200
-Wire Wire Line
-	3400 3500 2850 3500
-Text GLabel 2850 3200 0    50   Input ~ 0
+Text GLabel 7550 3200 2    50   Input ~ 0
 PORT2_IO
-Text GLabel 2850 3500 0    50   Input ~ 0
+Text GLabel 7550 3100 2    50   Input ~ 0
 PORT3_IO
-Wire Wire Line
-	3400 1900 2850 1900
-Wire Wire Line
-	3400 1800 2850 1800
-Text GLabel 2850 1800 0    50   Input ~ 0
+Text GLabel 7550 4300 2    50   Input ~ 0
 RX
-Text GLabel 2850 1900 0    50   Input ~ 0
+Text GLabel 7550 4400 2    50   Input ~ 0
 TX
-Wire Wire Line
-	3400 2600 2850 2600
-Text GLabel 2850 2600 0    50   Input ~ 0
+Text GLabel 7550 2200 2    50   Input ~ 0
 PWM_OUT
-Wire Wire Line
-	3400 2400 2850 2400
-Wire Wire Line
-	3400 2500 2850 2500
-Text GLabel 2850 2400 0    50   Input ~ 0
+Text GLabel 7550 4900 2    50   Input ~ 0
 PORT1_SEL
-Text GLabel 2850 2500 0    50   Input ~ 0
+Text GLabel 7550 5000 2    50   Input ~ 0
 PORT2_SEL
-Wire Wire Line
-	3400 3900 2800 3900
-Text GLabel 2800 3900 0    50   Input ~ 0
+Text GLabel 7550 5100 2    50   Input ~ 0
 PORT3_SEL
 $Comp
 L Device:C C2
@@ -265,19 +233,63 @@ Wire Wire Line
 Connection ~ 1950 5100
 Wire Wire Line
 	1950 5100 2200 5100
-Text GLabel 2850 3700 0    50   Input ~ 0
+Text GLabel 7550 3700 2    50   Input ~ 0
 FRAM_WP
-Wire Wire Line
-	2850 3700 3400 3700
 $Comp
 L DSP_Microchip_DSPIC33:DSPIC33FJ128MC804 U?
 U 1 1 5F5844E5
-P 5400 2950
-F 0 "U?" H 4056 2996 50  0000 R CNN
-F 1 "DSPIC33FJ128MC804" H 4056 2905 50  0000 R CNN
-F 2 "" H 5400 2950 50  0001 C CNN
-F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/70291G.pdf" H 5400 2950 50  0001 C CNN
-	1    5400 2950
+P 5800 3400
+F 0 "U?" H 4456 3446 50  0000 R CNN
+F 1 "DSPIC33FJ128MC804" H 4456 3355 50  0000 R CNN
+F 2 "" H 5800 3400 50  0001 C CNN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/70291G.pdf" H 5800 3400 50  0001 C CNN
+	1    5800 3400
 	1    0    0    -1  
 $EndComp
+Wire Wire Line
+	5500 5400 5600 5400
+Wire Wire Line
+	5600 5400 5700 5400
+Connection ~ 5600 5400
+Wire Wire Line
+	5500 1400 5550 1400
+Wire Wire Line
+	7100 3300 7550 3300
+Wire Wire Line
+	7100 3400 7550 3400
+Wire Wire Line
+	7100 3500 7550 3500
+Wire Wire Line
+	7100 3200 7550 3200
+Wire Wire Line
+	7100 3100 7550 3100
+Wire Wire Line
+	4100 1600 4500 1600
+Wire Wire Line
+	7100 2600 7550 2600
+Wire Wire Line
+	7100 2700 7550 2700
+Wire Wire Line
+	7100 4300 7550 4300
+Wire Wire Line
+	7100 4400 7550 4400
+Wire Wire Line
+	7100 4900 7550 4900
+Wire Wire Line
+	7100 5000 7550 5000
+Wire Wire Line
+	7100 5100 7550 5100
+Wire Wire Line
+	7550 3700 7100 3700
+Wire Wire Line
+	7550 2200 7100 2200
+Wire Wire Line
+	5550 1250 5550 1400
+Connection ~ 5550 1400
+Wire Wire Line
+	5550 1400 5600 1400
+Wire Wire Line
+	6000 1250 6000 1400
+Wire Wire Line
+	5600 5500 5600 5400
 $EndSCHEMATC
