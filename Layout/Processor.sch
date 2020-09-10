@@ -236,12 +236,12 @@ Wire Wire Line
 Text GLabel 7550 3700 2    50   Input ~ 0
 FRAM_WP
 $Comp
-L DSP_Microchip_DSPIC33:DSPIC33FJ128MC804 U?
+L DSP_Microchip_DSPIC33:DSPIC33FJ128MC804 U1
 U 1 1 5F5844E5
 P 5800 3400
-F 0 "U?" H 4456 3446 50  0000 R CNN
+F 0 "U1" H 4456 3446 50  0000 R CNN
 F 1 "DSPIC33FJ128MC804" H 4456 3355 50  0000 R CNN
-F 2 "" H 5800 3400 50  0001 C CNN
+F 2 "Package_QFP:TQFP-44_10x10mm_P0.8mm" H 5800 3400 50  0001 C CNN
 F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/70291G.pdf" H 5800 3400 50  0001 C CNN
 	1    5800 3400
 	1    0    0    -1  
@@ -292,4 +292,42 @@ Wire Wire Line
 	6000 1250 6000 1400
 Wire Wire Line
 	5600 5500 5600 5400
+$Comp
+L Connector:Conn_01x02_Female J5
+U 1 1 5F5B5019
+P 9650 2750
+F 0 "J5" H 9678 2726 50  0000 L CNN
+F 1 "Conn_01x02_Female" H 9678 2635 50  0000 L CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_1x02_P2.54mm_Vertical" H 9650 2750 50  0001 C CNN
+F 3 "~" H 9650 2750 50  0001 C CNN
+	1    9650 2750
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:Conn_01x02_Female J6
+U 1 1 5F5B5A51
+P 9650 3200
+F 0 "J6" H 9678 3176 50  0000 L CNN
+F 1 "Conn_01x02_Female" H 9678 3085 50  0000 L CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_1x02_P2.54mm_Vertical" H 9650 3200 50  0001 C CNN
+F 3 "~" H 9650 3200 50  0001 C CNN
+	1    9650 3200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9450 2750 9150 2750
+Wire Wire Line
+	9450 2850 9150 2850
+Wire Wire Line
+	9450 3200 9150 3200
+Wire Wire Line
+	9450 3300 9150 3300
+Text GLabel 9150 2750 0    50   Input ~ 0
+RX
+Text GLabel 9150 2850 0    50   Input ~ 0
+TX
+Text GLabel 9150 3200 0    50   Input ~ 0
+SCL
+Text GLabel 9150 3300 0    50   Input ~ 0
+SDA
 $EndSCHEMATC
