@@ -46,39 +46,6 @@ F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 6000 4425 50  0001 
 	1    5900 4800
 	1    0    0    -1  
 $EndComp
-$Comp
-L LED:WS2812B D8
-U 1 1 5F3986FD
-P 7250 3200
-F 0 "D8" H 7594 3246 50  0000 L CNN
-F 1 "WS2812B" H 7594 3155 50  0000 L CNN
-F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 7300 2900 50  0001 L TNN
-F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 7350 2825 50  0001 L TNN
-	1    7250 3200
-	1    0    0    -1  
-$EndComp
-$Comp
-L LED:WS2812B D9
-U 1 1 5F398CFA
-P 7250 4000
-F 0 "D9" H 7594 4046 50  0000 L CNN
-F 1 "WS2812B" H 7594 3955 50  0000 L CNN
-F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 7300 3700 50  0001 L TNN
-F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 7350 3625 50  0001 L TNN
-	1    7250 4000
-	1    0    0    -1  
-$EndComp
-$Comp
-L LED:WS2812B D10
-U 1 1 5F399728
-P 7250 4800
-F 0 "D10" H 7594 4846 50  0000 L CNN
-F 1 "WS2812B" H 7594 4755 50  0000 L CNN
-F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 7300 4500 50  0001 L TNN
-F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 7350 4425 50  0001 L TNN
-	1    7250 4800
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	7250 3550 7250 3500
 Wire Wire Line
@@ -276,4 +243,37 @@ Wire Wire Line
 Connection ~ 4150 2300
 Wire Wire Line
 	4150 2300 4150 2350
+$Comp
+L LED:WS2812B D10
+U 1 1 5F399728
+P 7250 4800
+F 0 "D10" H 7594 4846 50  0000 L CNN
+F 1 "WS2812B" H 7594 4755 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 7300 4500 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 7350 4425 50  0001 L TNN
+	1    7250 4800
+	1    0    0    -1  
+$EndComp
+$Comp
+L LED:WS2812B D9
+U 1 1 5F398CFA
+P 7250 4000
+F 0 "D9" H 7594 4046 50  0000 L CNN
+F 1 "WS2812B" H 7594 3955 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 7300 3700 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 7350 3625 50  0001 L TNN
+	1    7250 4000
+	1    0    0    -1  
+$EndComp
+$Comp
+L LED:WS2812B D8
+U 1 1 5F3986FD
+P 7250 3200
+F 0 "D8" H 7594 3246 50  0000 L CNN
+F 1 "WS2812B" H 7594 3155 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 7300 2900 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 7350 2825 50  0001 L TNN
+	1    7250 3200
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

@@ -293,17 +293,6 @@ Wire Wire Line
 Wire Wire Line
 	5600 5500 5600 5400
 $Comp
-L Connector:Conn_01x02_Female J5
-U 1 1 5F5B5019
-P 9650 2750
-F 0 "J5" H 9678 2726 50  0000 L CNN
-F 1 "Conn_01x02_Female" H 9678 2635 50  0000 L CNN
-F 2 "Connector_PinSocket_2.54mm:PinSocket_1x02_P2.54mm_Vertical" H 9650 2750 50  0001 C CNN
-F 3 "~" H 9650 2750 50  0001 C CNN
-	1    9650 2750
-	1    0    0    -1  
-$EndComp
-$Comp
 L Connector:Conn_01x02_Female J6
 U 1 1 5F5B5A51
 P 9650 3200
@@ -315,19 +304,26 @@ F 3 "~" H 9650 3200 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	9450 2750 9150 2750
-Wire Wire Line
-	9450 2850 9150 2850
-Wire Wire Line
 	9450 3200 9150 3200
 Wire Wire Line
 	9450 3300 9150 3300
-Text GLabel 9150 2750 0    50   Input ~ 0
+Text GLabel 9350 2500 0    50   Input ~ 0
 RX
-Text GLabel 9150 2850 0    50   Input ~ 0
-TX
 Text GLabel 9150 3200 0    50   Input ~ 0
 SCL
 Text GLabel 9150 3300 0    50   Input ~ 0
 SDA
+$Comp
+L Connector:Conn_01x01_Female J5
+U 1 1 5F729F19
+P 9650 2500
+F 0 "J5" H 9678 2526 50  0000 L CNN
+F 1 "Conn_01x01_Female" H 9678 2435 50  0000 L CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_1x01_P2.54mm_Vertical" H 9650 2500 50  0001 C CNN
+F 3 "~" H 9650 2500 50  0001 C CNN
+	1    9650 2500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9350 2500 9450 2500
 $EndSCHEMATC

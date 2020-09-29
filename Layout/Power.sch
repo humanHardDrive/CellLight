@@ -257,7 +257,7 @@ U 1 1 5F37D703
 P 3600 4350
 F 0 "L1" V 3790 4350 50  0000 C CNN
 F 1 "2.2u" V 3699 4350 50  0000 C CNN
-F 2 "Inductor_SMD:L_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 3600 4350 50  0001 C CNN
+F 2 "Inductor_SMD:L_Taiyo-Yuden_NR-40xx_HandSoldering" H 3600 4350 50  0001 C CNN
 F 3 "~" H 3600 4350 50  0001 C CNN
 	1    3600 4350
 	0    -1   -1   0   
