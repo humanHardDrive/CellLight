@@ -3,7 +3,7 @@ EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 1 7
+Sheet 1 6
 Title ""
 Date ""
 Rev ""
@@ -43,10 +43,52 @@ U 5F395F1A
 F0 "Power" 50
 F1 "Power.sch" 50
 $EndSheet
-$Sheet
-S 6600 3450 2150 1250
-U 5F3972E9
-F0 "LED" 50
-F1 "LED.sch" 50
-$EndSheet
+$Comp
+L Mechanical:MountingHole H1
+U 1 1 5FA88BAA
+P 3000 6050
+F 0 "H1" H 3100 6096 50  0000 L CNN
+F 1 "MountingHole" H 3100 6005 50  0000 L CNN
+F 2 "MountingHole:MountingHole_2.7mm_M2.5_Pad" H 3000 6050 50  0001 C CNN
+F 3 "~" H 3000 6050 50  0001 C CNN
+	1    3000 6050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H2
+U 1 1 5FA88DD2
+P 3800 6050
+F 0 "H2" H 3900 6096 50  0000 L CNN
+F 1 "MountingHole" H 3900 6005 50  0000 L CNN
+F 2 "MountingHole:MountingHole_2.7mm_M2.5_Pad" H 3800 6050 50  0001 C CNN
+F 3 "~" H 3800 6050 50  0001 C CNN
+	1    3800 6050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3800 6100 3800 6200
+Wire Wire Line
+	3000 6100 3000 6200
+$Comp
+L SparkFun-PowerSymbols:GND #GND0104
+U 1 1 5FA89469
+P 3000 6200
+F 0 "#GND0104" H 3050 6150 45  0001 L BNN
+F 1 "GND" H 3000 6030 45  0000 C CNN
+F 2 "" H 3000 6100 60  0001 C CNN
+F 3 "" H 3000 6100 60  0001 C CNN
+	1    3000 6200
+	1    0    0    -1  
+$EndComp
+$Comp
+L SparkFun-PowerSymbols:GND #GND0105
+U 1 1 5FA895DD
+P 3800 6200
+F 0 "#GND0105" H 3850 6150 45  0001 L BNN
+F 1 "GND" H 3800 6030 45  0000 C CNN
+F 2 "" H 3800 6100 60  0001 C CNN
+F 3 "" H 3800 6100 60  0001 C CNN
+	1    3800 6200
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
