@@ -4,25 +4,25 @@
     fortyfive_degree
   )
   (autoroute_settings
-    (fanout off)
+    (fanout on)
     (autoroute on)
     (postroute on)
     (vias on)
     (via_costs 50)
-    (plane_via_costs 5)
-    (start_ripup_costs 100)
-    (start_pass_no 2019)
+    (plane_via_costs 1)
+    (start_ripup_costs 50)
+    (start_pass_no 4029)
     (layer_rule F.Cu
       (active on)
       (preferred_direction horizontal)
       (preferred_direction_trace_costs 1.0)
-      (against_preferred_direction_trace_costs 2.7)
+      (against_preferred_direction_trace_costs 7.2)
     )
     (layer_rule B.Cu
       (active on)
       (preferred_direction vertical)
       (preferred_direction_trace_costs 1.0)
-      (against_preferred_direction_trace_costs 1.6)
+      (against_preferred_direction_trace_costs 1.2)
     )
   )
   (rule
@@ -46,11 +46,17 @@
   (via 
     "Via[0-1]_800:400_um-kicad_default" "Via[0-1]_800:400_um" "kicad_default"
   )
+  (via 
+    "Via[0-1]_800:400_um-Power" "Via[0-1]_800:400_um" Power
+  )
   (via_rule
     default "Via[0-1]_800:400_um"
   )
   (via_rule
     "kicad_default" "Via[0-1]_800:400_um-kicad_default"
+  )
+  (via_rule
+    Power "Via[0-1]_800:400_um-Power"
   )
   (class default
     (clearance_class default)
@@ -63,18 +69,24 @@
     )
   )
   (class "kicad_default"
-    "Net-(C1-Pad2)" GND +3V3 "Net-(C3-Pad2)" "Net-(C3-Pad1)" +5V +VDC "PRI_HI"
-    "PRI_LO" "Net-(D5-Pad2)" "Net-(D10-Pad4)" "Net-(D6-Pad2)" "Net-(D7-Pad2)" "PORT1_IO" "PORT2_IO" "PORT3_IO"
-    "Net-(J4-Pad6)" PGEC PGED RESET "IO_COM" SDA SCL "Net-(R4-Pad1)"
-    "Net-(R5-Pad1)" "Net-(R7-Pad2)" "Net-(U1-Pad38)" "Net-(U1-Pad37)" "Net-(U1-Pad36)" "Net-(U1-Pad35)" "Net-(U1-Pad34)" "Net-(U1-Pad33)"
-    "PWM_OUT" "Net-(U1-Pad31)" "Net-(U1-Pad30)" "Net-(U1-Pad27)" "Net-(U1-Pad24)" "Net-(U1-Pad23)" "Net-(U1-Pad20)" "Net-(U1-Pad19)"
-    "Net-(U1-Pad17)" "Net-(U1-Pad16)" "Net-(U1-Pad15)" "Net-(U1-Pad14)" "Net-(U1-Pad13)" "Net-(U1-Pad12)" "Net-(U1-Pad11)" "Net-(U1-Pad10)"
-    "FRAM_WP" "Net-(U1-Pad8)" "Net-(U1-Pad5)" "PORT3_SEL" "PORT2_SEL" "PORT1_SEL" "Net-(U2-Pad12)" "Net-(U2-Pad11)"
-    "Net-(U2-Pad10)" "Net-(U5-Pad4)"
+    GND 3.3V SCL SDA "COM_DATA" "CH1_TX_EN" "CH1_RX_EN" "LED_OUT"
+    "CH2_TX_EN" "CH2_RX_EN" "CH3_TX_EN" "CH3_RX_EN" "Net-(U1-Pad10)" "CH3_DATA" "CH2_DATA" "CH1_DATA"
+    "Net-(U1-Pad3)" "Net-(U5-Pad4)" SWCLK SWDIO NRST "Net-(U1-Pad15)"
     (clearance_class "kicad_default")
     (via_rule kicad_default)
     (rule
       (width 250.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+  (class Power
+    +VDC "PRI_LO" "PRI_HI" 5V
+    (clearance_class Power)
+    (via_rule Power)
+    (rule
+      (width 450.0)
     )
     (circuit 
       (use_layer F.Cu B.Cu)

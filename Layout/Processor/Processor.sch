@@ -1,0 +1,292 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 2 6
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L stm32g030f6p6:STM32G030F6P6 U1
+U 1 1 5FA37DB2
+P 4450 2900
+F 0 "U1" H 6250 3387 60  0000 C CNN
+F 1 "STM32G030F6P6" H 6250 3281 60  0000 C CNN
+F 2 "stm32g030f6p6:STM32G030F6P6" H 6250 3240 60  0001 C CNN
+F 3 "" H 4450 2900 60  0000 C CNN
+	1    4450 2900
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_US R1
+U 1 1 5FA5CB7B
+P 4650 1550
+F 0 "R1" H 4718 1596 50  0000 L CNN
+F 1 "R_US" H 4718 1505 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 4690 1540 50  0001 C CNN
+F 3 "~" H 4650 1550 50  0001 C CNN
+	1    4650 1550
+	1    0    0    -1  
+$EndComp
+$Comp
+L SparkFun-PowerSymbols:3.3V #SUPPLY0101
+U 1 1 5FA5D257
+P 4150 3700
+F 0 "#SUPPLY0101" H 4200 3700 45  0001 L BNN
+F 1 "3.3V" H 4150 3976 45  0000 C CNN
+F 2 "XXX-00000" H 4150 3881 60  0000 C CNN
+F 3 "" H 4150 3700 60  0001 C CNN
+	1    4150 3700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4150 3700 4450 3700
+$Comp
+L SparkFun-PowerSymbols:GND #GND0101
+U 1 1 5FA5DA03
+P 8050 4400
+F 0 "#GND0101" H 8100 4350 45  0001 L BNN
+F 1 "GND" H 8050 4230 45  0000 C CNN
+F 2 "" H 8050 4300 60  0001 C CNN
+F 3 "" H 8050 4300 60  0001 C CNN
+	1    8050 4400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW1
+U 1 1 5FA5E071
+P 4200 1700
+F 0 "SW1" H 4200 1985 50  0000 C CNN
+F 1 "SW_Push" H 4200 1894 50  0000 C CNN
+F 2 "Button_Switch_SMD:SW_SPST_TL3342" H 4200 1900 50  0001 C CNN
+F 3 "~" H 4200 1900 50  0001 C CNN
+	1    4200 1700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4400 1700 4650 1700
+$Comp
+L SparkFun-PowerSymbols:GND #GND0102
+U 1 1 5FA5F842
+P 4000 1850
+F 0 "#GND0102" H 4050 1800 45  0001 L BNN
+F 1 "GND" H 4000 1680 45  0000 C CNN
+F 2 "" H 4000 1750 60  0001 C CNN
+F 3 "" H 4000 1750 60  0001 C CNN
+	1    4000 1850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4000 1850 4000 1700
+$Comp
+L SparkFun-PowerSymbols:3.3V #SUPPLY0102
+U 1 1 5FA5FC6D
+P 4650 1300
+F 0 "#SUPPLY0102" H 4700 1300 45  0001 L BNN
+F 1 "3.3V" H 4650 1576 45  0000 C CNN
+F 2 "XXX-00000" H 4650 1481 60  0000 C CNN
+F 3 "" H 4650 1300 60  0001 C CNN
+	1    4650 1300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4650 1300 4650 1400
+Wire Wire Line
+	8050 3000 8850 3000
+Wire Wire Line
+	8050 3100 8850 3100
+Wire Wire Line
+	8050 3200 8850 3200
+Text GLabel 8850 3000 2    50   Input ~ 0
+CH1_DATA
+Text GLabel 8850 3100 2    50   Input ~ 0
+CH2_DATA
+Text GLabel 8850 3200 2    50   Input ~ 0
+CH3_DATA
+Wire Wire Line
+	4450 3400 3800 3400
+Text GLabel 3800 3400 0    50   Input ~ 0
+COM_DATA
+Text GLabel 1950 3300 0    50   Input ~ 0
+LED_OUT
+Wire Wire Line
+	8050 3900 8850 3900
+Wire Wire Line
+	8050 3800 8850 3800
+Text GLabel 8850 3900 2    50   Input ~ 0
+CH1_TX_EN
+Text GLabel 8850 3800 2    50   Input ~ 0
+CH1_RX_EN
+Wire Wire Line
+	8050 3700 8850 3700
+Wire Wire Line
+	8050 3600 8850 3600
+Wire Wire Line
+	8050 3500 8850 3500
+Wire Wire Line
+	8050 3400 8850 3400
+Text GLabel 8850 3700 2    50   Input ~ 0
+CH2_TX_EN
+Text GLabel 8850 3600 2    50   Input ~ 0
+CH2_RX_EN
+Text GLabel 8850 3500 2    50   Input ~ 0
+CH3_TX_EN
+Text GLabel 8850 3400 2    50   Input ~ 0
+CH3_RX_EN
+Wire Wire Line
+	4450 3100 3800 3100
+Wire Wire Line
+	4450 3200 3800 3200
+Text GLabel 3800 3100 0    50   Input ~ 0
+SCL
+Text GLabel 3800 3200 0    50   Input ~ 0
+SDA
+$Comp
+L Device:R_US R2
+U 1 1 5FA83D80
+P 2600 5450
+F 0 "R2" H 2668 5496 50  0000 L CNN
+F 1 "R_US" H 2668 5405 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 2640 5440 50  0001 C CNN
+F 3 "~" H 2600 5450 50  0001 C CNN
+	1    2600 5450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_US R3
+U 1 1 5FA84CE2
+P 3150 5450
+F 0 "R3" H 3218 5496 50  0000 L CNN
+F 1 "R_US" H 3218 5405 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 3190 5440 50  0001 C CNN
+F 3 "~" H 3150 5450 50  0001 C CNN
+	1    3150 5450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2600 5300 2600 5250
+Wire Wire Line
+	2600 5250 3150 5250
+Wire Wire Line
+	3150 5250 3150 5300
+Wire Wire Line
+	2600 5600 2600 5700
+Wire Wire Line
+	2600 5700 2100 5700
+Wire Wire Line
+	3150 5600 3150 5850
+Wire Wire Line
+	3150 5850 2100 5850
+$Comp
+L SparkFun-PowerSymbols:3.3V #SUPPLY0104
+U 1 1 5FA86EA2
+P 3150 5150
+F 0 "#SUPPLY0104" H 3200 5150 45  0001 L BNN
+F 1 "3.3V" H 3150 5426 45  0000 C CNN
+F 2 "XXX-00000" H 3150 5331 60  0000 C CNN
+F 3 "" H 3150 5150 60  0001 C CNN
+	1    3150 5150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3150 5150 3150 5250
+Connection ~ 3150 5250
+Text GLabel 2100 5700 0    50   Input ~ 0
+SCL
+Text GLabel 2100 5850 0    50   Input ~ 0
+SDA
+$Comp
+L dk_Logic-Translators-Level-Shifters:SN74LVC1T45DBVR U6
+U 1 1 5FA4BDE1
+P 2650 3300
+F 0 "U6" H 2994 3353 60  0000 L CNN
+F 1 "SN74LVC1T45DBVR" H 2250 2500 60  0000 L CNN
+F 2 "digikey-footprints:SOT-23-6" H 2850 3500 60  0001 L CNN
+F 3 "http://www.ti.com/general/docs/suppproductinfo.tsp?distId=10&gotoUrl=http%3A%2F%2Fwww.ti.com%2Flit%2Fgpn%2Fsn74lvc1t45" H 2850 3600 60  0001 L CNN
+F 4 "296-16843-1-ND" H 2850 3700 60  0001 L CNN "Digi-Key_PN"
+F 5 "SN74LVC1T45DBVR" H 2850 3800 60  0001 L CNN "MPN"
+F 6 "Integrated Circuits (ICs)" H 2850 3900 60  0001 L CNN "Category"
+F 7 "Logic - Translators, Level Shifters" H 2850 4000 60  0001 L CNN "Family"
+F 8 "http://www.ti.com/general/docs/suppproductinfo.tsp?distId=10&gotoUrl=http%3A%2F%2Fwww.ti.com%2Flit%2Fgpn%2Fsn74lvc1t45" H 2850 4100 60  0001 L CNN "DK_Datasheet_Link"
+F 9 "/product-detail/en/texas-instruments/SN74LVC1T45DBVR/296-16843-1-ND/639459" H 2850 4200 60  0001 L CNN "DK_Detail_Page"
+F 10 "IC TRNSLTR BIDIRECTIONAL SOT23-6" H 2850 4300 60  0001 L CNN "Description"
+F 11 "Texas Instruments" H 2850 4400 60  0001 L CNN "Manufacturer"
+F 12 "Active" H 2850 4500 60  0001 L CNN "Status"
+	1    2650 3300
+	1    0    0    -1  
+$EndComp
+$Comp
+L SparkFun-PowerSymbols:3.3V #SUPPLY0105
+U 1 1 5FA51948
+P 2750 2800
+F 0 "#SUPPLY0105" H 2800 2800 45  0001 L BNN
+F 1 "3.3V" H 2750 3076 45  0000 C CNN
+F 2 "XXX-00000" H 2750 2981 60  0000 C CNN
+F 3 "" H 2750 2800 60  0001 C CNN
+	1    2750 2800
+	1    0    0    -1  
+$EndComp
+$Comp
+L SparkFun-PowerSymbols:5V #SUPPLY0106
+U 1 1 5FA51F19
+P 2650 2450
+F 0 "#SUPPLY0106" H 2700 2450 45  0001 L BNN
+F 1 "5V" H 2650 2726 45  0000 C CNN
+F 2 "XXX-00000" H 2650 2631 60  0000 C CNN
+F 3 "" H 2650 2450 60  0001 C CNN
+	1    2650 2450
+	1    0    0    -1  
+$EndComp
+$Comp
+L SparkFun-PowerSymbols:GND #GND0106
+U 1 1 5FA53191
+P 2750 3800
+F 0 "#GND0106" H 2800 3750 45  0001 L BNN
+F 1 "GND" H 2750 3630 45  0000 C CNN
+F 2 "" H 2750 3700 60  0001 C CNN
+F 3 "" H 2750 3700 60  0001 C CNN
+	1    2750 3800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2750 3800 2750 3750
+Wire Wire Line
+	2650 2900 2650 2450
+Wire Wire Line
+	2750 2800 2750 2900
+Wire Wire Line
+	2350 3500 2350 3750
+Wire Wire Line
+	2350 3750 2750 3750
+Connection ~ 2750 3750
+Wire Wire Line
+	2750 3750 2750 3700
+Wire Wire Line
+	2350 3300 1950 3300
+Wire Wire Line
+	2950 3300 4450 3300
+Text GLabel 3800 2900 0    50   Input ~ 0
+NRST
+Wire Wire Line
+	3800 2900 4450 2900
+Text GLabel 5050 1700 2    50   Input ~ 0
+NRST
+Wire Wire Line
+	5050 1700 4650 1700
+Connection ~ 4650 1700
+Text GLabel 8850 4000 2    50   Input ~ 0
+SWDIO
+Text GLabel 8850 4100 2    50   Input ~ 0
+SWCLK
+Wire Wire Line
+	8850 4100 8050 4100
+Wire Wire Line
+	8050 4000 8850 4000
+$EndSCHEMATC

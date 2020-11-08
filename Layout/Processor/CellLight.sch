@@ -43,32 +43,8 @@ U 5F395F1A
 F0 "Power" 50
 F1 "Power.sch" 50
 $EndSheet
-$Comp
-L Mechanical:MountingHole H1
-U 1 1 5FA88BAA
-P 3000 6050
-F 0 "H1" H 3100 6096 50  0000 L CNN
-F 1 "MountingHole" H 3100 6005 50  0000 L CNN
-F 2 "MountingHole:MountingHole_2.7mm_M2.5_Pad" H 3000 6050 50  0001 C CNN
-F 3 "~" H 3000 6050 50  0001 C CNN
-	1    3000 6050
-	1    0    0    -1  
-$EndComp
-$Comp
-L Mechanical:MountingHole H2
-U 1 1 5FA88DD2
-P 3800 6050
-F 0 "H2" H 3900 6096 50  0000 L CNN
-F 1 "MountingHole" H 3900 6005 50  0000 L CNN
-F 2 "MountingHole:MountingHole_2.7mm_M2.5_Pad" H 3800 6050 50  0001 C CNN
-F 3 "~" H 3800 6050 50  0001 C CNN
-	1    3800 6050
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	3800 6100 3800 6200
-Wire Wire Line
-	3000 6100 3000 6200
 $Comp
 L SparkFun-PowerSymbols:GND #GND0104
 U 1 1 5FA89469
@@ -89,6 +65,30 @@ F 1 "GND" H 3800 6030 45  0000 C CNN
 F 2 "" H 3800 6100 60  0001 C CNN
 F 3 "" H 3800 6100 60  0001 C CNN
 	1    3800 6200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3000 6100 3000 6200
+$Comp
+L Mechanical:MountingHole_Pad H1
+U 1 1 5FA68397
+P 3000 6000
+F 0 "H1" H 3100 6049 50  0000 L CNN
+F 1 "MountingHole_Pad" H 3100 5958 50  0000 L CNN
+F 2 "MountingHole:MountingHole_2.7mm_M2.5_Pad" H 3000 6000 50  0001 C CNN
+F 3 "~" H 3000 6000 50  0001 C CNN
+	1    3000 6000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole_Pad H2
+U 1 1 5FA68840
+P 3800 6000
+F 0 "H2" H 3900 6049 50  0000 L CNN
+F 1 "MountingHole_Pad" H 3900 5958 50  0000 L CNN
+F 2 "MountingHole:MountingHole_2.7mm_M2.5_Pad" H 3800 6000 50  0001 C CNN
+F 3 "~" H 3800 6000 50  0001 C CNN
+	1    3800 6000
 	1    0    0    -1  
 $EndComp
 $EndSCHEMATC

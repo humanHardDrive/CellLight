@@ -23,6 +23,25 @@ X VCC 5 50 50 0 U 40 40 1 1 W N
 ENDDRAW
 ENDDEF
 #
+# Connector_Generic_Conn_01x02
+#
+DEF Connector_Generic_Conn_01x02 J 0 40 Y N 1 F N
+F0 "J" 0 100 50 H V C CNN
+F1 "Connector_Generic_Conn_01x02" 0 -200 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+$FPLIST
+ Connector*:*_1x??_*
+$ENDFPLIST
+DRAW
+S -50 -95 0 -105 1 1 6 N
+S -50 5 0 -5 1 1 6 N
+S -50 50 50 -150 1 1 10 f
+X Pin_1 1 -200 0 150 R 50 50 1 1 P
+X Pin_2 2 -200 -100 150 R 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
 # Connector_Generic_Conn_01x03
 #
 DEF Connector_Generic_Conn_01x03 J 0 40 Y N 1 F N
@@ -44,30 +63,28 @@ X Pin_3 3 -200 -100 150 R 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Connector_Generic_Conn_01x06
+# Connector_Generic_Conn_01x05
 #
-DEF Connector_Generic_Conn_01x06 J 0 40 Y N 1 F N
+DEF Connector_Generic_Conn_01x05 J 0 40 Y N 1 F N
 F0 "J" 0 300 50 H V C CNN
-F1 "Connector_Generic_Conn_01x06" 0 -400 50 H V C CNN
+F1 "Connector_Generic_Conn_01x05" 0 -300 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
  Connector*:*_1x??_*
 $ENDFPLIST
 DRAW
-S -50 -295 0 -305 1 1 6 N
 S -50 -195 0 -205 1 1 6 N
 S -50 -95 0 -105 1 1 6 N
 S -50 5 0 -5 1 1 6 N
 S -50 105 0 95 1 1 6 N
 S -50 205 0 195 1 1 6 N
-S -50 250 50 -350 1 1 10 f
+S -50 250 50 -250 1 1 10 f
 X Pin_1 1 -200 200 150 R 50 50 1 1 P
 X Pin_2 2 -200 100 150 R 50 50 1 1 P
 X Pin_3 3 -200 0 150 R 50 50 1 1 P
 X Pin_4 4 -200 -100 150 R 50 50 1 1 P
 X Pin_5 5 -200 -200 150 R 50 50 1 1 P
-X Pin_6 6 -200 -300 150 R 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
@@ -138,18 +155,19 @@ X ~~ 4 0 300 100 D 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Mechanical_MountingHole
+# Mechanical_MountingHole_Pad
 #
-DEF Mechanical_MountingHole H 0 40 Y Y 1 F N
-F0 "H" 0 200 50 H V C CNN
-F1 "Mechanical_MountingHole" 0 125 50 H V C CNN
+DEF Mechanical_MountingHole_Pad H 0 40 N N 1 F N
+F0 "H" 0 250 50 H V C CNN
+F1 "Mechanical_MountingHole_Pad" 0 175 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
- MountingHole*
+ MountingHole*Pad*
 $ENDFPLIST
 DRAW
-C 0 0 50 0 1 50 N
+C 0 50 50 0 1 50 N
+X 1 1 0 -100 100 U 50 50 1 1 I
 ENDDRAW
 ENDDEF
 #
@@ -233,6 +251,21 @@ X 3.3V ~ 0 0 0 U 40 40 1 1 W N
 ENDDRAW
 ENDDEF
 #
+# SparkFun-PowerSymbols_5V
+#
+DEF SparkFun-PowerSymbols_5V #SUPPLY 0 40 N N 1 L P
+F0 "#SUPPLY" 50 0 45 H I L BNN
+F1 "SparkFun-PowerSymbols_5V" -50 150 45 H V L BNN
+F2 "XXX-00000" 0 300 60 H V C CNN
+F3 "" 0 0 60 H I C CNN
+DRAW
+P 2 1 0 0 0 0 0 100 N
+P 2 1 0 0 0 100 -30 50 N
+P 2 1 0 0 30 50 0 100 N
+X 5V ~ 0 0 0 U 40 40 1 1 W N
+ENDDRAW
+ENDDEF
+#
 # SparkFun-PowerSymbols_GND
 #
 DEF SparkFun-PowerSymbols_GND #GND 0 40 N N 1 L P
@@ -264,34 +297,38 @@ X 2 2 200 0 100 L 50 50 0 1 P
 ENDDRAW
 ENDDEF
 #
-# power_+3.3V
+# dk_Logic-Translators-Level-Shifters_SN74LVC1T45DBVR
 #
-DEF power_+3.3V #PWR 0 0 Y Y 1 F P
-F0 "#PWR" 0 -150 50 H I C CNN
-F1 "power_+3.3V" 0 140 50 H V C CNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-ALIAS +3.3V
+DEF dk_Logic-Translators-Level-Shifters_SN74LVC1T45DBVR U 0 20 Y Y 1 F N
+F0 "U" -150 350 60 H V C CNN
+F1 "dk_Logic-Translators-Level-Shifters_SN74LVC1T45DBVR" -50 450 60 H V R CNN
+F2 "digikey-footprints:SOT-23-6" 200 200 60 H I L CNN
+F3 "http://www.ti.com/general/docs/suppproductinfo.tsp?distId=10&gotoUrl=http%3A%2F%2Fwww.ti.com%2Flit%2Fgpn%2Fsn74lvc1t45" 200 300 60 H I L CNN
+F4 "296-16843-1-ND" 200 400 60 H I L CNN "Digi-Key_PN"
+F5 "SN74LVC1T45DBVR" 200 500 60 H I L CNN "MPN"
+F6 "Integrated Circuits (ICs)" 200 600 60 H I L CNN "Category"
+F7 "Logic - Translators, Level Shifters" 200 700 60 H I L CNN "Family"
+F8 "http://www.ti.com/general/docs/suppproductinfo.tsp?distId=10&gotoUrl=http%3A%2F%2Fwww.ti.com%2Flit%2Fgpn%2Fsn74lvc1t45" 200 800 60 H I L CNN "DK_Datasheet_Link"
+F9 "/product-detail/en/texas-instruments/SN74LVC1T45DBVR/296-16843-1-ND/639459" 200 900 60 H I L CNN "DK_Detail_Page"
+F10 "IC TRNSLTR BIDIRECTIONAL SOT23-6" 200 1000 60 H I L CNN "Description"
+F11 "Texas Instruments" 200 1100 60 H I L CNN "Manufacturer"
+F12 "Active" 200 1200 60 H I L CNN "Status"
 DRAW
-P 2 0 1 0 -30 50 0 100 N
-P 2 0 1 0 0 0 0 100 N
-P 2 0 1 0 0 100 30 50 N
-X +3V3 1 0 0 0 U 50 50 1 1 W N
-ENDDRAW
-ENDDEF
-#
-# power_+5V
-#
-DEF power_+5V #PWR 0 0 Y Y 1 F P
-F0 "#PWR" 0 -150 50 H I C CNN
-F1 "power_+5V" 0 140 50 H V C CNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-DRAW
-P 2 0 1 0 -30 50 0 100 N
-P 2 0 1 0 0 0 0 100 N
-P 2 0 1 0 0 100 30 50 N
-X +5V 1 0 0 0 U 50 50 1 1 W N
+S -200 300 200 -300 0 1 0 f
+P 2 0 1 0 -125 0 -75 0 N
+P 2 0 1 0 125 0 75 0 N
+P 3 0 1 0 -75 0 -75 -25 -20 -25 N
+P 3 0 1 0 -75 0 -75 25 -25 25 N
+P 3 0 1 0 75 0 75 -25 25 -25 N
+P 3 0 1 0 75 0 75 25 25 25 N
+P 4 0 1 0 -25 50 -25 0 25 25 -25 50 F
+P 4 0 1 0 25 0 25 -50 -25 -25 25 0 F
+X VCCA 1 0 400 100 D 50 50 1 1 W
+X GND 2 100 -400 100 U 50 50 1 1 W
+X A 3 -300 0 100 R 50 50 1 1 B
+X B 4 300 0 100 L 50 50 1 1 B
+X DIR 5 -300 -200 100 R 50 50 1 1 I
+X VCCB 6 100 400 100 D 50 50 1 1 W
 ENDDRAW
 ENDDEF
 #

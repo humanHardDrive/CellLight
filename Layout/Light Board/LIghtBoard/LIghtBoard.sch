@@ -1,0 +1,339 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L LED:WS2812B D1
+U 1 1 5FA6A72C
+P 4450 2900
+F 0 "D1" H 4794 2946 50  0000 L CNN
+F 1 "WS2812B" H 4794 2855 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 4500 2600 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 4550 2525 50  0001 L TNN
+	1    4450 2900
+	1    0    0    -1  
+$EndComp
+$Comp
+L LED:WS2812B D2
+U 1 1 5FA6CAFA
+P 5550 2900
+F 0 "D2" H 5894 2946 50  0000 L CNN
+F 1 "WS2812B" H 5894 2855 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 5600 2600 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 5650 2525 50  0001 L TNN
+	1    5550 2900
+	1    0    0    -1  
+$EndComp
+$Comp
+L LED:WS2812B D3
+U 1 1 5FA6D585
+P 6650 2900
+F 0 "D3" H 6994 2946 50  0000 L CNN
+F 1 "WS2812B" H 6994 2855 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 6700 2600 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 6750 2525 50  0001 L TNN
+	1    6650 2900
+	1    0    0    -1  
+$EndComp
+$Comp
+L LED:WS2812B D4
+U 1 1 5FA6DB72
+P 7750 2900
+F 0 "D4" H 8094 2946 50  0000 L CNN
+F 1 "WS2812B" H 8094 2855 50  0000 L CNN
+F 2 "LED_SMD:LED_WS2812B_PLCC4_5.0x5.0mm_P3.2mm" H 7800 2600 50  0001 L TNN
+F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 7850 2525 50  0001 L TNN
+	1    7750 2900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4050 2900 4050 3300
+Wire Wire Line
+	4050 3300 5250 3300
+Wire Wire Line
+	5250 3300 5250 2900
+Wire Wire Line
+	5250 3300 6350 3300
+Wire Wire Line
+	6350 3300 6350 2900
+Connection ~ 5250 3300
+Wire Wire Line
+	6350 3300 7450 3300
+Wire Wire Line
+	7450 3300 7450 2900
+Connection ~ 6350 3300
+Wire Wire Line
+	4450 3200 5550 3200
+Wire Wire Line
+	5550 3200 6650 3200
+Connection ~ 5550 3200
+Wire Wire Line
+	7750 3200 6650 3200
+Connection ~ 6650 3200
+Wire Wire Line
+	4450 2600 5550 2600
+Wire Wire Line
+	5550 2600 6650 2600
+Connection ~ 5550 2600
+Wire Wire Line
+	6650 2600 7750 2600
+Connection ~ 6650 2600
+Wire Wire Line
+	4050 2900 4150 2900
+$Comp
+L SparkFun-PowerSymbols:5V #SUPPLY0101
+U 1 1 5FA72E4E
+P 4450 2600
+F 0 "#SUPPLY0101" H 4500 2600 45  0001 L BNN
+F 1 "5V" H 4450 2876 45  0000 C CNN
+F 2 "XXX-00000" H 4450 2781 60  0000 C CNN
+F 3 "" H 4450 2600 60  0001 C CNN
+	1    4450 2600
+	1    0    0    -1  
+$EndComp
+Connection ~ 4450 2600
+$Comp
+L SparkFun-PowerSymbols:GND #GND0101
+U 1 1 5FA7379A
+P 7750 3200
+F 0 "#GND0101" H 7800 3150 45  0001 L BNN
+F 1 "GND" H 7750 3030 45  0000 C CNN
+F 2 "" H 7750 3100 60  0001 C CNN
+F 3 "" H 7750 3100 60  0001 C CNN
+	1    7750 3200
+	1    0    0    -1  
+$EndComp
+Connection ~ 7750 3200
+Wire Wire Line
+	8050 2900 8200 2900
+Wire Wire Line
+	8200 2900 8200 2050
+Text Label 3350 2100 3    50   ~ 0
+Din
+Text Label 8200 2050 3    50   ~ 0
+Dout
+$Comp
+L Mechanical:MountingHole_Pad H1
+U 1 1 5FA74941
+P 2300 4400
+F 0 "H1" H 2400 4449 50  0000 L CNN
+F 1 "MountingHole_Pad" H 2400 4358 50  0000 L CNN
+F 2 "MountingHole:MountingHole_2.7mm_M2.5_Pad" H 2300 4400 50  0001 C CNN
+F 3 "~" H 2300 4400 50  0001 C CNN
+	1    2300 4400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole_Pad H2
+U 1 1 5FA74CDC
+P 3350 4400
+F 0 "H2" H 3450 4449 50  0000 L CNN
+F 1 "MountingHole_Pad" H 3450 4358 50  0000 L CNN
+F 2 "MountingHole:MountingHole_2.7mm_M2.5_Pad" H 3350 4400 50  0001 C CNN
+F 3 "~" H 3350 4400 50  0001 C CNN
+	1    3350 4400
+	1    0    0    -1  
+$EndComp
+$Comp
+L SparkFun-PowerSymbols:GND #GND0102
+U 1 1 5FA758A6
+P 2300 4500
+F 0 "#GND0102" H 2350 4450 45  0001 L BNN
+F 1 "GND" H 2300 4330 45  0000 C CNN
+F 2 "" H 2300 4400 60  0001 C CNN
+F 3 "" H 2300 4400 60  0001 C CNN
+	1    2300 4500
+	1    0    0    -1  
+$EndComp
+$Comp
+L SparkFun-PowerSymbols:GND #GND0103
+U 1 1 5FA75CEE
+P 3350 4500
+F 0 "#GND0103" H 3400 4450 45  0001 L BNN
+F 1 "GND" H 3350 4330 45  0000 C CNN
+F 2 "" H 3350 4400 60  0001 C CNN
+F 3 "" H 3350 4400 60  0001 C CNN
+	1    3350 4500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C1
+U 1 1 5FA761B7
+P 5300 4450
+F 0 "C1" H 5415 4496 50  0000 L CNN
+F 1 "C" H 5415 4405 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 5338 4300 50  0001 C CNN
+F 3 "~" H 5300 4450 50  0001 C CNN
+	1    5300 4450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Jumper:Jumper_2_Open JP1
+U 1 1 5FA77030
+P 3350 2650
+F 0 "JP1" V 3396 2562 50  0000 R CNN
+F 1 "Jumper_2_Open" V 3350 3350 50  0000 R CNN
+F 2 "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm" H 3350 2650 50  0001 C CNN
+F 3 "~" H 3350 2650 50  0001 C CNN
+	1    3350 2650
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:R_US R1
+U 1 1 5FA77225
+P 3750 2650
+F 0 "R1" H 3818 2696 50  0000 L CNN
+F 1 "R_US" H 3818 2605 50  0000 L CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 3790 2640 50  0001 C CNN
+F 3 "~" H 3750 2650 50  0001 C CNN
+	1    3750 2650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3350 2450 3350 2400
+Wire Wire Line
+	3350 2400 3750 2400
+Wire Wire Line
+	3750 2400 3750 2500
+Wire Wire Line
+	3350 2850 3350 2900
+Wire Wire Line
+	3350 2900 3750 2900
+Wire Wire Line
+	3750 2900 3750 2800
+Wire Wire Line
+	3750 2900 4050 2900
+Connection ~ 3750 2900
+Connection ~ 4050 2900
+Wire Wire Line
+	3350 2100 3350 2400
+Connection ~ 3350 2400
+$Comp
+L SparkFun-PowerSymbols:5V #SUPPLY0102
+U 1 1 5FA7A26D
+P 5300 4150
+F 0 "#SUPPLY0102" H 5350 4150 45  0001 L BNN
+F 1 "5V" H 5300 4426 45  0000 C CNN
+F 2 "XXX-00000" H 5300 4331 60  0000 C CNN
+F 3 "" H 5300 4150 60  0001 C CNN
+	1    5300 4150
+	1    0    0    -1  
+$EndComp
+$Comp
+L SparkFun-PowerSymbols:GND #GND0104
+U 1 1 5FA7A857
+P 5300 4700
+F 0 "#GND0104" H 5350 4650 45  0001 L BNN
+F 1 "GND" H 5300 4530 45  0000 C CNN
+F 2 "" H 5300 4600 60  0001 C CNN
+F 3 "" H 5300 4600 60  0001 C CNN
+	1    5300 4700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5300 4700 5300 4650
+Wire Wire Line
+	5300 4300 5300 4250
+$Comp
+L Connector_Generic:Conn_01x03 J1
+U 1 1 5FA7B912
+P 6950 4450
+F 0 "J1" H 6868 4125 50  0000 C CNN
+F 1 "Conn_01x03" H 6868 4216 50  0000 C CNN
+F 2 "Connector_JST:JST_GH_BM03B-GHS-TBT_1x03-1MP_P1.25mm_Vertical" H 6950 4450 50  0001 C CNN
+F 3 "~" H 6950 4450 50  0001 C CNN
+	1    6950 4450
+	-1   0    0    1   
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x03 J2
+U 1 1 5FA7C227
+P 8200 4450
+F 0 "J2" H 8118 4125 50  0000 C CNN
+F 1 "Conn_01x03" H 8118 4216 50  0000 C CNN
+F 2 "Connector_JST:JST_GH_BM03B-GHS-TBT_1x03-1MP_P1.25mm_Vertical" H 8200 4450 50  0001 C CNN
+F 3 "~" H 8200 4450 50  0001 C CNN
+	1    8200 4450
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	7150 4550 7450 4550
+Wire Wire Line
+	7150 4450 7750 4450
+Wire Wire Line
+	7150 4350 7150 3850
+Wire Wire Line
+	8000 4350 8000 3850
+Wire Wire Line
+	7450 4550 7450 4200
+Connection ~ 7450 4550
+Wire Wire Line
+	7450 4550 8000 4550
+Wire Wire Line
+	7750 4450 7750 4850
+Connection ~ 7750 4450
+Wire Wire Line
+	7750 4450 8000 4450
+$Comp
+L SparkFun-PowerSymbols:5V #SUPPLY0103
+U 1 1 5FA80A1B
+P 7450 4200
+F 0 "#SUPPLY0103" H 7500 4200 45  0001 L BNN
+F 1 "5V" H 7450 4476 45  0000 C CNN
+F 2 "XXX-00000" H 7450 4381 60  0000 C CNN
+F 3 "" H 7450 4200 60  0001 C CNN
+	1    7450 4200
+	1    0    0    -1  
+$EndComp
+$Comp
+L SparkFun-PowerSymbols:GND #GND0105
+U 1 1 5FA810C1
+P 7750 4850
+F 0 "#GND0105" H 7800 4800 45  0001 L BNN
+F 1 "GND" H 7750 4680 45  0000 C CNN
+F 2 "" H 7750 4750 60  0001 C CNN
+F 3 "" H 7750 4750 60  0001 C CNN
+	1    7750 4850
+	1    0    0    -1  
+$EndComp
+Text Label 7150 3850 3    50   ~ 0
+Din
+Text Label 8000 3850 3    50   ~ 0
+Dout
+$Comp
+L Device:C C2
+U 1 1 5FA6EE60
+P 5750 4450
+F 0 "C2" H 5865 4496 50  0000 L CNN
+F 1 "C" H 5865 4405 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 5788 4300 50  0001 C CNN
+F 3 "~" H 5750 4450 50  0001 C CNN
+	1    5750 4450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5300 4250 5750 4250
+Wire Wire Line
+	5750 4250 5750 4300
+Connection ~ 5300 4250
+Wire Wire Line
+	5300 4250 5300 4150
+Wire Wire Line
+	5300 4650 5750 4650
+Wire Wire Line
+	5750 4650 5750 4600
+Connection ~ 5300 4650
+Wire Wire Line
+	5300 4650 5300 4600
+$EndSCHEMATC

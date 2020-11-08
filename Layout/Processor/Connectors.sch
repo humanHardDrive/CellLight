@@ -1,0 +1,212 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 3 6
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Connector_Generic:Conn_01x05 J1
+U 1 1 5FA65779
+P 3400 2200
+F 0 "J1" H 3318 2617 50  0000 C CNN
+F 1 "Conn_01x05" H 3318 2526 50  0000 C CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_1x05_P2.54mm_Vertical" H 3400 2200 50  0001 C CNN
+F 3 "~" H 3400 2200 50  0001 C CNN
+	1    3400 2200
+	-1   0    0    -1  
+$EndComp
+Text GLabel 4050 2400 2    50   Input ~ 0
+SWCLK
+Text GLabel 4050 2300 2    50   Input ~ 0
+SWDIO
+Text GLabel 4050 2200 2    50   Input ~ 0
+NRST
+Wire Wire Line
+	3600 2200 4050 2200
+Wire Wire Line
+	3600 2300 4050 2300
+Wire Wire Line
+	3600 2400 4050 2400
+$Comp
+L SparkFun-PowerSymbols:GND #GND0107
+U 1 1 5FA660D7
+P 4550 2100
+F 0 "#GND0107" H 4600 2050 45  0001 L BNN
+F 1 "GND" H 4550 1930 45  0000 C CNN
+F 2 "" H 4550 2000 60  0001 C CNN
+F 3 "" H 4550 2000 60  0001 C CNN
+	1    4550 2100
+	1    0    0    -1  
+$EndComp
+$Comp
+L SparkFun-PowerSymbols:3.3V #SUPPLY0107
+U 1 1 5FA6694E
+P 4550 2000
+F 0 "#SUPPLY0107" H 4600 2000 45  0001 L BNN
+F 1 "3.3V" H 4550 2276 45  0000 C CNN
+F 2 "XXX-00000" H 4550 2181 60  0000 C CNN
+F 3 "" H 4550 2000 60  0001 C CNN
+	1    4550 2000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4550 2000 3600 2000
+Wire Wire Line
+	3600 2100 4550 2100
+$Comp
+L Connector_Generic:Conn_01x02 J3
+U 1 1 5FA6866E
+P 4400 3700
+F 0 "J3" V 4272 3780 50  0000 L CNN
+F 1 "Conn_01x02" V 4363 3780 50  0000 L CNN
+F 2 "Connector_JST:JST_GH_BM02B-GHS-TBT_1x02-1MP_P1.25mm_Vertical" H 4400 3700 50  0001 C CNN
+F 3 "~" H 4400 3700 50  0001 C CNN
+	1    4400 3700
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x02 J4
+U 1 1 5FA689E4
+P 5200 3700
+F 0 "J4" V 5072 3780 50  0000 L CNN
+F 1 "Conn_01x02" V 5163 3780 50  0000 L CNN
+F 2 "Connector_JST:JST_GH_BM02B-GHS-TBT_1x02-1MP_P1.25mm_Vertical" H 5200 3700 50  0001 C CNN
+F 3 "~" H 5200 3700 50  0001 C CNN
+	1    5200 3700
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x02 J2
+U 1 1 5FA677C8
+P 3600 3700
+F 0 "J2" V 3472 3780 50  0000 L CNN
+F 1 "Conn_01x02" V 3563 3780 50  0000 L CNN
+F 2 "Connector_JST:JST_GH_BM02B-GHS-TBT_1x02-1MP_P1.25mm_Vertical" H 3600 3700 50  0001 C CNN
+F 3 "~" H 3600 3700 50  0001 C CNN
+	1    3600 3700
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3600 3500 3600 3400
+Wire Wire Line
+	3600 3400 4400 3400
+Wire Wire Line
+	4400 3400 4400 3500
+Wire Wire Line
+	4400 3400 5200 3400
+Wire Wire Line
+	5200 3400 5200 3500
+Connection ~ 4400 3400
+Wire Wire Line
+	3500 3500 3500 3350
+Wire Wire Line
+	3500 3350 4300 3350
+Wire Wire Line
+	4300 3350 4300 3500
+Wire Wire Line
+	4300 3350 5100 3350
+Wire Wire Line
+	5100 3350 5100 3500
+Connection ~ 4300 3350
+$Comp
+L power:PRI_HI #PWR0102
+U 1 1 5FA69A7E
+P 5200 3200
+F 0 "#PWR0102" H 5200 3050 50  0001 C CNN
+F 1 "PRI_HI" H 5215 3373 50  0000 C CNN
+F 2 "" H 5200 3200 50  0001 C CNN
+F 3 "" H 5200 3200 50  0001 C CNN
+	1    5200 3200
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:PRI_LO #PWR0103
+U 1 1 5FA6A418
+P 3500 3200
+F 0 "#PWR0103" H 3500 3050 50  0001 C CNN
+F 1 "PRI_LO" H 3515 3373 50  0000 C CNN
+F 2 "" H 3500 3200 50  0001 C CNN
+F 3 "" H 3500 3200 50  0001 C CNN
+	1    3500 3200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3500 3200 3500 3350
+Connection ~ 3500 3350
+Wire Wire Line
+	5200 3200 5200 3400
+Connection ~ 5200 3400
+$Comp
+L Connector_Generic:Conn_01x03 J5
+U 1 1 5FA6BF69
+P 6300 2150
+F 0 "J5" H 6218 2467 50  0000 C CNN
+F 1 "Conn_01x03" H 6218 2376 50  0000 C CNN
+F 2 "Connector_JST:JST_GH_BM03B-GHS-TBT_1x03-1MP_P1.25mm_Vertical" H 6300 2150 50  0001 C CNN
+F 3 "~" H 6300 2150 50  0001 C CNN
+	1    6300 2150
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	6500 2050 6950 2050
+Wire Wire Line
+	6500 2150 6950 2150
+Wire Wire Line
+	6500 2250 6950 2250
+Text GLabel 6950 2050 2    50   Input ~ 0
+CH1_DATA
+Text GLabel 6950 2150 2    50   Input ~ 0
+CH2_DATA
+Text GLabel 6950 2250 2    50   Input ~ 0
+CH3_DATA
+$Comp
+L Connector_Generic:Conn_01x03 J6
+U 1 1 5FA81F8B
+P 6650 3400
+F 0 "J6" H 6568 3717 50  0000 C CNN
+F 1 "Conn_01x03" H 6568 3626 50  0000 C CNN
+F 2 "Connector_JST:JST_GH_BM03B-GHS-TBT_1x03-1MP_P1.25mm_Vertical" H 6650 3400 50  0001 C CNN
+F 3 "~" H 6650 3400 50  0001 C CNN
+	1    6650 3400
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	6850 3500 7400 3500
+Text GLabel 7400 3500 2    50   Input ~ 0
+LED_OUT
+Wire Wire Line
+	6850 3400 7950 3400
+Wire Wire Line
+	6850 3300 7950 3300
+$Comp
+L SparkFun-PowerSymbols:5V #SUPPLY0111
+U 1 1 5FA82D42
+P 7950 3300
+F 0 "#SUPPLY0111" H 8000 3300 45  0001 L BNN
+F 1 "5V" H 7950 3576 45  0000 C CNN
+F 2 "XXX-00000" H 7950 3481 60  0000 C CNN
+F 3 "" H 7950 3300 60  0001 C CNN
+	1    7950 3300
+	1    0    0    -1  
+$EndComp
+$Comp
+L SparkFun-PowerSymbols:GND #GND0108
+U 1 1 5FA833BA
+P 7950 3400
+F 0 "#GND0108" H 8000 3350 45  0001 L BNN
+F 1 "GND" H 7950 3230 45  0000 C CNN
+F 2 "" H 7950 3300 60  0001 C CNN
+F 3 "" H 7950 3300 60  0001 C CNN
+	1    7950 3400
+	1    0    0    -1  
+$EndComp
+$EndSCHEMATC

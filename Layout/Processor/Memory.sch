@@ -30,8 +30,6 @@ Wire Wire Line
 	5150 3450 5150 3550
 Connection ~ 5150 3450
 Wire Wire Line
-	5150 3750 4550 3750
-Wire Wire Line
 	5950 3450 6350 3450
 Wire Wire Line
 	5950 3650 6350 3650
@@ -52,17 +50,6 @@ F 3 "" H 5550 4050 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	5550 4050 5550 3950
-$Comp
-L power:+3.3V #PWR0120
-U 1 1 5F399383
-P 5550 2900
-F 0 "#PWR0120" H 5550 2750 50  0001 C CNN
-F 1 "+3.3V" H 5565 3073 50  0000 C CNN
-F 2 "" H 5550 2900 50  0001 C CNN
-F 3 "" H 5550 2900 50  0001 C CNN
-	1    5550 2900
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	5550 2900 5550 3100
 Wire Wire Line
@@ -73,6 +60,20 @@ Connection ~ 5550 3100
 Wire Wire Line
 	5550 3100 5550 3150
 Connection ~ 5150 3350
-Text GLabel 4550 3750 0    50   Input ~ 0
-FRAM_WP
+Wire Wire Line
+	5150 3750 5150 3950
+Wire Wire Line
+	5150 3950 5550 3950
+Connection ~ 5550 3950
+$Comp
+L SparkFun-PowerSymbols:3.3V #SUPPLY0110
+U 1 1 5FA7A40B
+P 5550 2900
+F 0 "#SUPPLY0110" H 5600 2900 45  0001 L BNN
+F 1 "3.3V" H 5550 3176 45  0000 C CNN
+F 2 "XXX-00000" H 5550 3081 60  0000 C CNN
+F 3 "" H 5550 2900 60  0001 C CNN
+	1    5550 2900
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
