@@ -11,7 +11,7 @@
     (via_costs 50)
     (plane_via_costs 1)
     (start_ripup_costs 50)
-    (start_pass_no 4029)
+    (start_pass_no 5572)
     (layer_rule F.Cu
       (active on)
       (preferred_direction horizontal)
@@ -69,9 +69,9 @@
     )
   )
   (class "kicad_default"
-    GND 3.3V SCL SDA "COM_DATA" "CH1_TX_EN" "CH1_RX_EN" "LED_OUT"
-    "CH2_TX_EN" "CH2_RX_EN" "CH3_TX_EN" "CH3_RX_EN" "Net-(U1-Pad10)" "CH3_DATA" "CH2_DATA" "CH1_DATA"
-    "Net-(U1-Pad3)" "Net-(U5-Pad4)" SWCLK SWDIO NRST "Net-(U1-Pad15)"
+    GND SCL SDA "COM_DATA" "CH1_TX_EN" "CH1_RX_EN" "LED_OUT" "CH2_TX_EN"
+    "CH2_RX_EN" "CH3_TX_EN" "CH3_RX_EN" "CH3_DATA" "CH2_DATA" "CH1_DATA" SWCLK SWDIO
+    NRST "Net-(U1-Pad4)" "Net-(U2-Pad10)" "Net-(U2-Pad3)" "Net-(U11-Pad4)"
     (clearance_class "kicad_default")
     (via_rule kicad_default)
     (rule
@@ -82,7 +82,7 @@
     )
   )
   (class Power
-    +VDC "PRI_LO" "PRI_HI" 5V
+    5V +VDC "PRI_LO" "PRI_HI" 3.3V
     (clearance_class Power)
     (via_rule Power)
     (rule
