@@ -7,20 +7,20 @@
       "Application": "Pcbnew",
       "Version":     "(5.1.6)-1"
     },
-    "CreationDate":  "2020-11-09T21:23:30-05:00"
+    "CreationDate":  "2020-11-09T21:27:46-05:00"
   },
   "GeneralSpecs":
   {
     "ProjectId":
     {
-      "Name": "CellLight",
-      "GUID": "43656c6c-4c69-4676-9874-2e6b69636164",
+      "Name": "LIghtBoard",
+      "GUID": "4c496768-7442-46f6-9172-642e6b696361",
       "Revision": "rev?"
     },
     "Size":
     {
-      "X": 100.100,
-      "Y": 15.100
+      "X": 59.850,
+      "Y": 30.550
     },
     "LayerNumber": 2,
     "BoardThickness":  1.600
@@ -40,47 +40,47 @@
   "FilesAttributes":
   [
     {
-      "Path":  "CellLight-F_Cu.gbr",
+      "Path":  "LIghtBoard-F_Cu.gbr",
       "FileFunction":  "Copper,L1,Top",
       "FilePolarity":  "Positive"
     },
     {
-      "Path":  "CellLight-B_Cu.gbr",
+      "Path":  "LIghtBoard-B_Cu.gbr",
       "FileFunction":  "Copper,L2,Bot",
       "FilePolarity":  "Positive"
     },
     {
-      "Path":  "CellLight-F_Paste.gbr",
+      "Path":  "LIghtBoard-F_Paste.gbr",
       "FileFunction":  "SolderPaste,Top",
       "FilePolarity":  "Positive"
     },
     {
-      "Path":  "CellLight-B_Paste.gbr",
+      "Path":  "LIghtBoard-B_Paste.gbr",
       "FileFunction":  "SolderPaste,Bot",
       "FilePolarity":  "Positive"
     },
     {
-      "Path":  "CellLight-F_SilkS.gbr",
+      "Path":  "LIghtBoard-F_SilkS.gbr",
       "FileFunction":  "Legend,Top",
       "FilePolarity":  "Positive"
     },
     {
-      "Path":  "CellLight-B_SilkS.gbr",
+      "Path":  "LIghtBoard-B_SilkS.gbr",
       "FileFunction":  "Legend,Bot",
       "FilePolarity":  "Positive"
     },
     {
-      "Path":  "CellLight-F_Mask.gbr",
+      "Path":  "LIghtBoard-F_Mask.gbr",
       "FileFunction":  "SolderMask,Top",
       "FilePolarity":  "Negative"
     },
     {
-      "Path":  "CellLight-B_Mask.gbr",
+      "Path":  "LIghtBoard-B_Mask.gbr",
       "FileFunction":  "SolderMask,Bot",
       "FilePolarity":  "Negative"
     },
     {
-      "Path":  "CellLight-Edge_Cuts.gbr",
+      "Path":  "LIghtBoard-Edge_Cuts.gbr",
       "FileFunction":  "Profile",
       "FilePolarity":  "Positive"
     }
