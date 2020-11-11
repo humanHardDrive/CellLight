@@ -1,6 +1,6 @@
 build/
 dist/
-
+Debug/
 private/
 *.sch-bak
 Layout/fp-info-cache
