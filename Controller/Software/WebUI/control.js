@@ -1,4 +1,11 @@
 const s = (p) => {
+  function niceAngle(angle) {
+    while (angle < 0)
+      angle += p.TWO_PI;
+
+    return angle;
+  }
+
   class Cell {
     //Every cell that gets placed gets a new ID
     //This method ensures that the IDs are created statically and always valid
@@ -20,13 +27,21 @@ const s = (p) => {
       this.ID = -1;
       this.parent = parent;
 
+      //These counters are used to prevent recursion loops when a cell connects back to itself
+      //These counts are updated by the base methods update, draw, and place
+      //If the cell's count already matches the supplied count, then the call returns immediately
+      this.updateCount = -1;
+      this.drawCount = -1;
+      this.placeCount = -1;
+
       //Calculate the base length and angle
       this.base = p.dist(x1, y1, x2, y2);
-      this.angle = p.atan2(y1 - y2, x2 - x1) + (p.PI / 3); //Equilateral triangles are 60° so PI/3 radians
+      this.angle = p.atan2(y1 - y2, x2 - x1);
 
       //So that the missing point can be calculated
-      this.x2 = this.x1 + (this.base * p.cos(this.angle));
-      this.y2 = this.y1 - (this.base * p.sin(this.angle));
+      //Equilateral triangles are 60° so PI/3 radians
+      this.x2 = this.x1 + (this.base * p.cos(this.angle + (p.PI / 3)));
+      this.y2 = this.y1 - (this.base * p.sin(this.angle + (p.PI / 3)));
 
       //Calculate the center position to determine when the mouse is inside of the cell
       this.centerX = (this.x1 + this.x2 + this.x3) / 3;
@@ -34,81 +49,126 @@ const s = (p) => {
 
       //Some flags
       this.bPlaced = false; //Placed indicates that the cell is always shown and it's children have been created
-      this.bCanDraw = false; //Draw just means that the cell should be shown whether or not it's been placed
+      this.bInCell = false;
 
       //The child cells, null at start and created when placed
       this.leftChild = null;
       this.rightChild = null;
     }
 
-    update(x, y) {
-      if (!this.bPlaced) { //Update the bCanDraw flag when the mouse is in the cell
-        if (p.dist(x, y, this.centerX, this.centerY) < (this.base / 4)) //Div by 4 so that 2 cells aren't active at the same time
-          this.bCanDraw = true;
-        else
-          this.bCanDraw = false;
-      } else { //Recursively update the child cells
+    update(x, y, updateCount) {
+      if (this.updateCount == updateCount)
+        return;
+
+      this.updateCount = updateCount;
+
+      if (p.dist(x, y, this.centerX, this.centerY) < (this.base / 4)) {
+        this.bInCell = true;
+      } else {
+        this.bInCell = false;
+
         if (this.leftChild != null)
-          this.leftChild.update(x, y);
+          this.leftChild.update(x, y, updateCount);
 
         if (this.rightChild != null)
-          this.rightChild.update(x, y);
+          this.rightChild.update(x, y, updateCount);
       }
     }
 
-    draw() {
-      //Draw the cell. This should work out so that once the cell is placed, this flag is always true
-      if (this.bCanDraw)
+    draw(drawCount) {
+      if (this.drawCount == drawCount)
+        return;
+
+      this.drawCount = drawCount;
+
+      if (this.bPlaced || this.bInCell)
         p.triangle(this.x1, this.y1, this.x2, this.y2, this.x3, this.y3);
 
       //If the cell has been placed, recursively update the child cells
       if (this.bPlaced) {
         if (this.leftChild != null)
-          this.leftChild.draw();
+          this.leftChild.draw(drawCount);
 
         if (this.rightChild != null)
-          this.rightChild.draw();
+          this.rightChild.draw(drawCount);
       }
     }
 
-    place(pCell) {
+    place(pCell, placeCount) {
+      if (this.placeCount == placeCount)
+        return;
+
+      this.placeCount = placeCount;
+
       //Has this cell already been placed?
-      //Using the bCanDraw flag is nice because it means that the mouse is already in the cell
-      if (!this.bPlaced && this.bCanDraw) {
-        //Has a cell already been created?
-        //This should only happen when 2 cells happen to overlap
-        if (pCell == null) { //If no other cell has been created
-          //Just proceed as usual
-          this.bPlaced = true; //Set the placed flag
-          this.ID = Cell.getNextID(); //Get the next ID
+      if (this.bInCell) {
+        if ( /*this.bPlaced*/ false) //Disable cell delete function
+          this.bPlaced = false;
+        else if (!this.bPlaced) {
+          //Has a cell already been created?
+          //This should only happen when 2 cells happen to overlap
+          if (pCell == null) { //If no other cell has been created
+            //Just proceed as usual
+            this.bPlaced = true; //Set the placed flag
+            this.ID = Cell.getNextID(); //Get the next ID
 
-          //Create the children cells
-          this.leftChild = new Cell(this.x1, this.y1, this.x2, this.y2, this);
-          this.rightChild = new Cell(this.x2, this.y2, this.x3, this.y3, this);
+            if (this.parent != null) {
+              if (this == this.parent.leftChild)
+                p.print("Placing", this.ID, "left child of", this.parent.ID);
+              else if (this == this.parent.rightChild)
+                p.print("Placing", this.ID, "right child of", this.parent.ID);
+            } else
+              p.print("Placing", this.ID);
 
-          //Return the newly placed cell reference
-          return this;
-        } else { //Another cell has already been created
-          //Find out which child this is (left/right)
-          if (this == this.parent.leftChild) {
-            this.parent.leftChild = null; //Nullify the parent's child reference so the cell isn't updated and can't be placed in future
-            //This should be symmetrical where the parent and the other created cell's right child are the same. So nullify that one as well so more cells don't overlap
-            pCell.rightChild = null;
-          } else if (this == this.parent.rightChild) { //Same goes for the right child
-            this.parent.rightChild = null;
-            pCell.leftChild = null;
-          } else //Catchall. Don't know when this would happen
-            p.print("WHAT");
+            //Create the children cells
+            this.leftChild = new Cell(this.x1, this.y1, this.x2, this.y2, this);
+            this.rightChild = new Cell(this.x2, this.y2, this.x3, this.y3, this);
+
+            //Return the newly placed cell reference
+            return this;
+          } else { //Another cell has already been created
+            //Figure out which cells need to be deleted
+            //Calculate the relative angle that points from one cell to the next
+            //This is the angle from the current cell's parent to the cell that was already created
+            let parent2CellAngle = p.atan2(this.parent.centerY - pCell.centerY, pCell.centerX - this.parent.centerX) - this.parent.angle;
+            //This is the angle from the created cell to the current cell's parent
+            let cell2ParentAngle = p.atan2(pCell.centerY - this.parent.centerY, this.parent.centerX - pCell.centerX) - pCell.angle;
+            //These two angles are then offset by the base angle of the respective cell
+            //This translates the angle to point out one of the two "out" directions
+
+            //Convert the angle to be between 0 and PI
+            parent2CellAngle = niceAngle(parent2CellAngle);
+            cell2ParentAngle = niceAngle(cell2ParentAngle);
+
+            p.print(cell2ParentAngle, parent2CellAngle);
+
+            //Angles past PI/2 mean the connection is out the left
+            if (cell2ParentAngle > p.HALF_PI) {
+              p.print("Removing left child of cell");
+              pCell.leftChild = this.parent;
+            } else {
+              p.print("Removing right child of cell");
+              pCell.rightChild = this.parent;
+            }
+
+            if (parent2CellAngle > p.HALF_PI) {
+              p.print("Removing left child of parent");
+              this.parent.leftChild = pCell;
+            } else {
+              p.print("Removing right child of parent");
+              this.parent.rightChild = pCell;
+            }
+          }
         }
       } else if (this.bPlaced) {
         //This cell has already been placed? Check its children
         //Handle each case so that the overlap is done correctly with recursion
         if (this.leftChild != null && this.rightChild != null) //Hard
-          return this.leftChild.place(this.rightChild.place(pCell));
+          return this.leftChild.place(this.rightChild.place(pCell, placeCount), placeCount);
         else if (this.leftChild != null) //Easy
-          return this.leftChild.place(pCell);
-        else //Easy
-          return this.rightChild.place(pCell);
+          return this.leftChild.place(pCell, placeCount);
+        else if (this.rightChild != null) //Easy
+          return this.rightChild.place(pCell, placeCount);
       }
 
       return pCell;
@@ -121,6 +181,10 @@ const s = (p) => {
       this.x = this.y = 0;
       this.angle = 0;
 
+      this.drawCount = 0;
+      this.updateCount = 0;
+      this.placeCount = 0;
+
       this.bPlaced = false;
       this.child = null;
     }
@@ -129,9 +193,10 @@ const s = (p) => {
       if (!this.bPlaced) {
         this.x = x;
         this.y = y;
-      } else {
-        this.child.update(x, y);
-      }
+      } else
+        this.child.update(x, y, this.updateCount);
+
+      this.updateCount++;
     }
 
     draw() {
@@ -139,21 +204,24 @@ const s = (p) => {
 
       //Recursively update the child cells
       if (this.bPlaced)
-        this.child.draw();
+        this.child.draw(this.drawCount);
+
+      this.drawCount++;
     }
 
     place() {
       if (!this.bPlaced) {
         this.bPlaced = true;
         this.child = new Cell(this.x - 20, this.y - 10, this.x + 20, this.y - 10);
-      } else {
-        this.child.place(null);
-      }
+      } else
+        this.child.place(null, this.placeCount);
+
+      this.placeCount++;
     }
   };
 
   p.setup = function() {
-    p.createCanvas(p.windowWidth, p.windowHeight);
+    p.createCanvas(p.windowWidth / 2, p.windowHeight / 2);
   }
 
   let b = new Base();
@@ -161,20 +229,21 @@ const s = (p) => {
   p.draw = function() {
     p.background(64);
 
-	//All updates are done recursively
+    //All updates are done recursively
     b.update(p.mouseX, p.mouseY);
-	//All draws are done recursively
+    //All draws are done recursively
     b.draw();
   }
 
   p.mouseClicked = function() {
-	//Bounds check, make sure nothing is drawn off screen
-    if(p.mouseX >= 0 && p.mouseX < p.width && p.mouseY >= 0 && p.mouseY < p.height)
-        b.place();
+    //Bounds check, make sure nothing is drawn off screen
+    if (p.mouseX >= 0 && p.mouseX < p.width && p.mouseY >= 0 && p.mouseY < p.height)
+      //All places are done recursively
+      b.place();
   }
-  
+
   p.windowResized = function() {
-	p.resizeCanvas(p.windowWidth, p.windowHeight);
+    p.resizeCanvas(p.windowWidth / 2, p.windowHeight / 2);
   }
 };
 
