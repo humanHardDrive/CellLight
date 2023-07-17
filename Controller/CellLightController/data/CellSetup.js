@@ -5,6 +5,8 @@ const s = (p) => {
   
       return angle;
     }
+
+    let debug = true;
   
     class Cell {
       //Every cell that gets placed gets a new ID
@@ -62,9 +64,18 @@ const s = (p) => {
   
         this.updateCount = updateCount;
   
-        if (p.dist(x, y, this.centerX, this.centerY) < (this.base / 4)) {
+        if (p.dist(x, y, this.centerX, this.centerY) < (this.base / 4)) 
+        {
           this.bInCell = true;
-        } else {
+
+          if(debug && this.bPlaced)
+          {
+            let sCellNum = 'Cell: ' + this.ID;
+            p.text(sCellNum, 0, 300);
+          }
+        } 
+        else 
+        {
           this.bInCell = false;
   
           if (this.leftChild != null)
@@ -82,7 +93,16 @@ const s = (p) => {
         this.drawCount = drawCount;
   
         if (this.bPlaced || this.bInCell)
+        {
           p.triangle(this.x1, this.y1, this.x2, this.y2, this.x3, this.y3);
+          
+          if(debug)
+          {
+            let s = String(this.ID);
+            let offsetX = p.textWidth(s) / 2;
+            p.text(s, this.centerX - offsetX, this.centerY);
+          }
+        }
   
         //If the cell has been placed, recursively update the child cells
         if (this.bPlaced) {
