@@ -5,3 +5,6 @@ private/
 *.sch-bak
 Layout/fp-info-cache
 *.kicad_pcb-bak
+Cell/Software/Cell/Drivers/*
+Cell/Layout/Processor/CellLight-backups/*
+Cell/Layout/Light Board/LIghtBoard-backups/*
